@@ -1,0 +1,40 @@
+#include <vector>
+#include <iostream>
+
+using namespace std ;
+
+template <class DATA>
+PQueue<DATA> :: PQueue ( unsigned int size ) {
+    tree = new vector<DATA>(size);
+}
+
+template <class DATA>
+bool PQueue<DATA> :: fetchPQ ( DATA & data ) {
+    if (tree.empty()) return false;
+
+    data = tree[0]->data;
+    tree[0] = tree[tree.size() - 1];
+    tree.erase(tree.size() - 1);
+    balanceDown(0);
+	
+    return true; 
+}
+	
+
+template <class DATA>
+bool PQueue<DATA> :: insertPQ ( DATA & data , double rank ) {
+    if ( tree.size() == tree.max_size() ) return false;
+    tree[tree.size()]->data = data;
+    tree[tree.size()]->rank = rank;
+    balanceUp(tree.size());
+    return true;
+}
+
+// The printPQ operation is OPTIONAL work.
+
+template <class DATA>
+void PQueue<DATA> :: printPQ ( ostream & out ) const
+{
+  out << "priority queue contains ";
+	// look at the PQ tests for some very useful hints...
+}

@@ -1,0 +1,16 @@
+class CreateTumblr < ActiveRecord::Migration
+  def change
+  	create_table :tumblr_blogs, do |t|
+  		t.string   :blog_url
+  		t.datetime :created_at
+  		t.datetime :updated_at
+    end
+	 create_table :tumblr_images, do |t|
+  		t.string   :blog_url
+  		t.string   :image_url
+  		t.datetime :created_at
+  		t.datetime :updated_at
+  		t.integer  :order
+    end
+  end
+end

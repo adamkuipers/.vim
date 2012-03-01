@@ -1,0 +1,52 @@
+
+PUBLIC		= /home/linux/ieng6/cs100w/public
+HOME 			= /home/adam
+#HW3_DIR		= $(PUBLIC)/Homeworks/HW3
+HW3_DIR		= $(HOME)/cs100/HW3
+
+SOURCE0		= $(HW3_DIR)/Programs/maze.cpp 
+SOURCE1		= $(HW3_DIR)/TESTS/testPQ/testPQ.cpp
+SOURCE2		= $(HW3_DIR)/TESTS/testPQ/mainPQ.cpp
+SOURCE3		= $(HW3_DIR)/TESTS/testPQ/Test1PQ.cpp
+SOURCE4		= $(HW3_DIR)/TESTS/testDS/testDS.cpp
+
+maze:		$(SOURCE0)
+		@echo "Compiling and Loading maze ..."
+		@cp $(SOURCE0) .
+		@g++ maze.cpp -O3 -lm -o maze
+		@rm -f maze.cpp
+		@echo "done"
+
+testPQ:		$(SOURCE1)
+		@echo "Compiling and Loading testPQ ..."
+		@cp $(SOURCE1) .
+		@g++ testPQ.cpp -O3 -lm -o testPQ
+		@rm -f testPQ.cpp
+		@echo "done"
+
+mainPQ:		$(SOURCE2)
+		@echo "Compiling and Loading mainPQ ..."
+		@cp $(SOURCE2) .
+		@g++ mainPQ.cpp -O3 -lm -o mainPQ
+		@rm -f mainPQ.cpp
+		@echo "done"
+
+test1PQ:	$(SOURCE3)
+		@echo "Compiling and Loading Test1PQ ..."
+		@cp $(SOURCE3) .
+		@g++ test1PQ.cpp -O3 -o Test1PQ
+		@rm -f Test1PQ.cpp
+		@echo "done"
+
+testDS:		$(SOURCE4)
+		@echo "Compiling and Loading TestDS ..."
+		@cp $(SOURCE4) .
+		@g++ testDS.cpp -O3 -o testDS
+		@rm -f testDS.cpp
+		@echo "done"
+
+clean:
+		rm -rf maze solver testPQ mainPQ anotherTestPQ testDS core
+
+#	this makefile assumes your version of PriorityQueue.hpp PriorityQueue.cpp DisjointSubsets.hpp DisjointSubsets.cpp \ 
+	createMaze.cpp createMaze.hpp and Wall.hpp are in the same directory/folder.

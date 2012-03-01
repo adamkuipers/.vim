@@ -1,0 +1,9 @@
+SelectorApp.Collections.Photos = Backbone.Collection.extend({
+
+  model: SelectorApp.Models.Photo,
+  url:  '/api/instagram/personal_photos.json?count=50',
+  parse: function(response) {
+    return response;
+  }
+
+});

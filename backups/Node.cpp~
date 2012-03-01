@@ -1,0 +1,24 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  Node.cpp
+ *
+ *    Description:  This is a node object
+ *
+ *        Version:  1.0
+ *        Created:  02/25/12 22:38:49
+ *       Revision:  none
+ *       Compiler:  gpp
+ *
+ *         Author:  Adam Kuipers
+ *   Organization:  
+ *
+ * =====================================================================================
+ */
+#include <stdlib.h>
+
+class Node {
+    unsigned rank, 
+             parent;
+}
+

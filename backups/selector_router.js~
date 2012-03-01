@@ -1,0 +1,56 @@
+Printstagram.Routers.SelectorApp = Backbone.Router.extend({
+
+  routes: { "":           "index",
+    "review":     "review"
+  },
+
+  index: function() {
+
+    var state, photos, selector, navigation, followings;
+
+    var vent = _.extend({}, Backbone.Events);
+
+    var selects = new Hashtable();
+
+    state = { count: 0 }
+
+    select_header = new SelectorApp.Views.SelectHeader({ vent: vent, state: state });
+
+    followings = new SelectorApp.Collections.Followings();
+    followings.fetch({
+      success: function(followings) {
+        $.getJSON('/api/instagram/self_media_count', function(media) {
+          console.log(media);
+          navigation = new SelectorApp.Views.Navigation({ vent: vent, followings: followings, media: media });
+        });
+      }
+    });
+
+    photos = new SelectorApp.Collections.InstagramPhotos();
+    photos.fetch({
+      success: function(photos) {
+        console.log(photos);
+        selector = new Printstagram.Views.SelectorApp({ followings: followings, vent: vent, photos: photos, state: state });
+      }
+    });
+
+
+  },
+
+  review: function(){
+    var vent = _.extend({}, Backbone.Events);
+
+    photos = new SelectorApp.Collections.Selecteds();
+
+    photos.fetch({
+      success: function(selects) {
+        reviewer = new Printstagram.Views.ReviewApp({ selects: selects });
+        navigation.remove();
+        navigation.render();
+
+      }
+    });
+  }
+
+
+});

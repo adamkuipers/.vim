@@ -1,0 +1,9 @@
+SelectorApp.Collections.Likes = Backbone.Collection.extend({
+
+  model: SelectorApp.Models.Like,
+  url:  '/api/instagram/liked_photos.json?count=50',
+  parse: function(response) {
+    return response;
+  }
+
+});

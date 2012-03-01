@@ -1,0 +1,63 @@
+#ifndef PQUEUE
+#define PQUEUE
+
+#include <vector> 
+#include <iostream>
+#include <algorithm>
+
+using namespace std ;
+
+
+template <class DATA>
+class PQueue {
+
+    typedef struct { DATA data; double rank; } node;
+	public:
+		bool insertPQ ( DATA & dddd , double rank ) ;
+		bool fetchPQ ( DATA & data ) ;
+		explicit PQueue ( unsigned int size ) ;
+        void printPQ ( ostream & out ) const ;   
+
+	private:
+        vector<node> tree;
+
+        void swap( node t1, node t2 ) {
+            node tmp;
+            tmp = t1;
+            t1 = t2;
+            t2 = tmp;
+        }
+
+        void balanceUp( unsigned index ) {
+            node tmp;
+            for ( unsigned i = index; i < 0 && tree[i]->rank > tree[i / 2]->rank; i /= 2 ) {
+                swap(tree[i], tree[i / 2]);
+            }
+        }
+
+        void balanceDown( unsigned index ) {
+            node tmp;
+            for (unsigned i = index; i < tree.size(); i *= 2) {
+                if ( tree[i]->rank < tree[2 * i]->rank ) {
+                    tmp = tree[i];
+                    tree[i] = tree[2 * i];
+                    tree[2 * i] = tmp;
+                }
+                if ( tree[i]->rank < tree[2 * i + 1]->rank ) {
+                    tmp = tree[i];
+                    tree[i] = tree[2 * i + 1];
+                    tree[2 * i + 1] = tmp;
+                }
+            }
+        }
+} ;
+
+template <class DATA>
+ostream & operator << ( ostream & out , const PQueue<DATA> & pq ) 
+{
+	pq.printPQ(out) ; return out ;
+}
+
+#include "PQFloydWilliams.cpp"
+
+#endif

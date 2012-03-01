@@ -1,0 +1,23 @@
+class Api::Instagram::UserMediaCountController < ApplicationController
+  def index
+    account = PrintStudio::Application::Instagram.getAccount(cookies[:access_token])
+
+    if IgFollowing.where("account_id = ? AND user_id = ?", account.user_id, params[:userID].to_i).count > 0
+      account = IgFollowing.where("account_id = ? AND user_id = ?", account.user_id, params[:userID].to_i)[0]
+    else
+      following = Instagram.getJSONfromURI("https://api.instagram.com/v1/users/#{params[:userID]}?access_token=#{self[:access_token]}")
+      mediaCount = ['data']['counts']['media']
+      IgFollowing.new(:username => following['username'],
+                      :fullname => following['full_name'],
+                      :account_id => cookies[:access_token].split('.')[0],
+                      :user_id => following['id'],
+                      :media_count => mediaCount,
+                      :next_url => 'None').save
+      account = IgFollowing.where("account_id = ? AND user_id = ?", account.user_id, params[:userID].to_i)[0]
+    end
+    result = {"media_count" => account.media_count}
+    respond_to do |format|
+      format.any{render :json => result, :callback => params[:callback]}
+    end
+  end
+end

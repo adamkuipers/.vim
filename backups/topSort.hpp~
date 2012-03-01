@@ -1,0 +1,20 @@
+
+
+#include <istream>
+#include <iostream>
+#include <vector>
+#include <list>
+
+#ifndef TOPSORT
+#define TOPSORT
+
+list<unsigned> & topSortAdjacencyLists ( istream & input ) ;
+list<unsigned> & topSortAdjacencyMatrix ( istream & input ) ;
+int findOrphanList ( vector<bool> &m );
+int findOrphanMatrix( vector<vector<bool> > & adM );
+
+#include "topSort.cpp"
+
+#endif
+
+

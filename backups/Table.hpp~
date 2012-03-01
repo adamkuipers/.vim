@@ -1,0 +1,60 @@
+#ifndef __TABLE_H__
+#define __TABLE_H__
+#include <vector>
+#include <list>
+#include <ostream>
+//#include <stddef.h>
+#include <math.h>
+using namespace std;
+
+typedef struct { double successful[2] , unsuccessful[2] ; } Perform ;
+
+
+template <class DATA>
+class Table {
+private :
+    unsigned int count;
+    vector< list< DATA > > table;
+
+    /* 
+     * ===  FUNCTION  ======================================================================
+     *         Name:  hash
+     *  Description:  Hash function
+     * =====================================================================================
+     */
+    unsigned int hash ( DATA & data ) { 
+        return unsigned( data ) % table.size();
+    }
+
+    /* 
+     * ===  FUNCTION  ======================================================================
+     *         Name:  find
+     *  Description:  Searches through the table for an element
+     * =====================================================================================
+     */
+    bool find ( DATA & data ) {
+        unsigned int index = hash( data );
+        //typename table[index]::iterator it;
+        typename list<DATA>::iterator it;
+
+        // Iterate through list to see if it contains data
+        for (it = table[index].begin(); it < table[index].end(); it++) 
+           if ( *it.equals( data ) ) 
+               return true;
+
+        // else
+        return false;
+    }
+
+public :
+	explicit Table ( unsigned int size = 5 ) ;
+	void clear ( ) ;
+	bool insert ( DATA & data ) ;
+	bool remove ( DATA & data ) ;
+	bool access ( DATA & data ) ;
+	Perform perform ( ) const ;
+	list<DATA> & getOne ( unsigned int i ) ;		
+
+} ;
+
+#endif

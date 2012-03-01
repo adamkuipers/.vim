@@ -1,0 +1,175 @@
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+ *
+ * 	< adam kuipers >	  < akuipers >
+ *
+ *	homework 1
+ *
+ * = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+#include <vector>
+#include <string>
+#include <list>
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+list<unsigned> mySort;
+unsigned int n = 0; // Number of nodes
+vector<bool> removedNode(n, false); // For matrix, if any nodes are removed.
+
+const bool DEV_MOD = false; // Developer mode? 
+
+
+int findOrphanList(vector<int>& m) {
+    for ( unsigned int i = 0; i < n; i++) {
+        if ( !m[i] ) {
+            return i;
+        }
+    }
+    return -1; // Return error if failed
+}
+
+int findOrphanMatrix( vector< vector<bool> > &adM ) {
+    for (int unsigned i = 0; i < n; i++) {
+        for (int unsigned j = 0; j < n; j++) {
+
+            // If node has parent, break
+            if ( adM[j][i] ) 
+                break;
+
+            // If got to node n - 1, and no parent. Return i.
+            if ( j == n - 1 && !removedNode[i] ) {
+
+                // Dev mode
+                if ( DEV_MOD ) 
+                    cout << "DEV MODE\n\n" << "node " << i << " is an orphan" 
+                         << "\n\n END DEV MODE\n\n";
+
+                // Set row of node i to all false as it is removed
+                for (int unsigned k = 0; k < n; k++)
+                    adM[i][k] = false;
+
+
+                removedNode[i] = true;
+                return i;
+            }
+        }
+    }
+
+    // Exit failure
+    return -1;
+}
+
+list<unsigned> & topSortAdjacencyLists ( istream & idata ) {
+    // Ensure mySort is empty
+    mySort.clear();
+
+    /*  Indexes for values */
+    unsigned int i = 0; 
+    unsigned int j = 0; 
+
+    int orphan = 0; // Index of node with no orphan
+    // Retrieve n
+    idata >> n;
+
+    // Dev mode
+    if (DEV_MOD) cout << "n = " << n << "\n\n";
+
+    // Initialize vectors
+    vector< list<unsigned> > adList(n);
+    vector<int> parents(n, 0); // Determines if node has a parent and how many.
+
+    // Create adjacency list
+    while ( idata >> i >> j ) {
+        adList[i].push_back(j);
+        parents[j]++;
+    }
+
+    /*  Build mySort */
+    for ( i = 0; i < n; i++ ) {
+        orphan = findOrphanList( parents );
+
+        // Check if findOrphan worked
+        if (orphan < 0) {
+            // Push number of sorted elements to front of mySort 
+            mySort.push_front(i);
+            for ( int k = 0; k < n; k++ ) {
+                if (parents[k] >= 0 ) 
+                    mySort.push_back(k);
+            }
+            // Leave loop
+            break;
+        }
+
+        mySort.push_back(orphan);
+
+        while( !adList[orphan].empty() ) {
+            parents[adList[orphan].front()]--; // Subtract 1 parent
+            adList[orphan].pop_front();
+        }
+        parents[orphan]--; // mark negative to signify being removed from list
+    }
+    return mySort;
+}
+
+list<unsigned> & topSortAdjacencyMatrix ( istream & idata ) {
+    // Ensure mySort is empty
+    mySort.clear();
+
+    int orphan = 0; // node with no parent
+
+    // Retrieve n
+    idata >> n;
+
+    // Dev mode
+    if (DEV_MOD) cout << "n = " << n << "\n\n";
+
+    // Initialize adjacency matrix
+    vector< vector<bool> > adMatrix(n, vector<bool>(n,false));
+    /* for (unsigned int i = 0; i < n; i++) 
+        adMatrix[i].resize(n, false);*/
+   
+    /*  Indexes for values */
+    unsigned int i = 0; 
+    unsigned int j = 0; 
+
+    while (idata >> i >> j){
+        adMatrix[i][j] = true;
+        if(i>=n || j>=n || i<0 || j<0)
+            cout << "boom" << endl;
+       }
+
+    // DEV MODE
+    if ( DEV_MOD ) {
+        // Print matrix
+        cout << "\nDEVMOD \n Adjacency matrix: \n\n";
+        for ( unsigned int i = 0; i < n; i++ ) { 
+            for ( unsigned int j = 0; j < n; j++ ) { 
+                //cout << "i = " << i << " j = " << j;
+                cout << adMatrix[i][j] << " ";
+            }
+            cout << endl;
+        }
+        cout << "\n\nEND DEVMOD\n\n";
+    }
+
+    /*  Build mySort */
+    for ( i = 0; i < n; i++ ) {
+        // find first orphaned node
+        orphan = findOrphanMatrix( adMatrix );
+        // Exit program if none were found
+        if ( orphan < 0 ) {
+            // Push number of sorted elements to front of mySort 
+            mySort.push_front(i);
+
+            for ( int k = 0; k < n; k++ ) {
+                if (removedNode[k] == false ) 
+                    mySort.push_back(k);
+            }
+            // Leave loop
+            break;
+        }
+
+        mySort.push_back( orphan );
+    }
+    return mySort;
+}

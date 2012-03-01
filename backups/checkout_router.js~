@@ -1,0 +1,4 @@
+Printstagram.Routers.SelectorApp = Backbone.Router.extend({
+    routes: {
+      "": "index"
+    };

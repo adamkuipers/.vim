@@ -1,0 +1,31 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * 
+ *
+ *	Disjoint Subsets union-find 	winter 2012
+ *
+ *	< Adam Kuipers >
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * */ 
+
+#ifndef UNIVERSE 
+#define UNIVERSE 
+
+#include <vector>
+
+typedef struct { unsigned parent, rank; } _node;
+class DisjointSubsets { 
+
+	public :
+		DisjointSubsets ( unsigned numberElements = 5 ) ;
+
+		unsigned findDS ( unsigned ) ;
+
+		bool unionDS ( unsigned , unsigned ) ;
+
+	private :
+        vector<node> node;
+} ;
+
+#include "DisjointSubsets.cpp"
+
+#endif

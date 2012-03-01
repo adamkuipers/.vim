@@ -1,0 +1,9 @@
+:javascript
+  $( function() {
+    Printstagram.init();
+  });
+
+#app-container
+  #navigation
+  #header
+  #main

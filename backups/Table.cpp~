@@ -1,0 +1,140 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  Table.cpp
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  02/12/12 00:39:28
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Adam Kuipers
+ *     Student ID:  A09511551
+ *   Organization:  CSE 100
+ *
+ * =====================================================================================
+ */
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  Table
+ *  Description:  Constructor. Sets size of the table, default size is 5.
+ * =====================================================================================
+ */
+template< class DATA >
+Table<DATA>::Table ( unsigned int size ) {
+    table = vector< list< DATA > > ( size );
+
+    // Innitialize everything at 0.
+    table.clear();
+}
+
+/* 
+ * ===  FUNCTION  ======================================================================          
+ *         Name:  clear
+ *  Description:  Clears all elements in the table
+ * =====================================================================================
+ */
+template< class DATA >
+void Table<DATA>::clear ( ) {
+    for ( int i = 0; i < table.size(); i++ ) {
+        table[i].clear();
+    }
+    count = 0;
+}
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  insert
+ *  Description:  Inserts an elements into the table. Add to back of list. Return true 
+ *                if successful, else return false.
+ * =====================================================================================
+ */
+template< class DATA >
+bool Table<DATA>::insert ( DATA & data ) {
+    unsigned int index;
+
+    // Make sure there are no dublicates
+    if ( find( data ) )
+        return false;
+
+    index = hash( data );
+    table[index].push_back( data );
+    count++;
+    return true;
+}
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  remove
+ *  Description:  Finds element, removes element, and returns true. Returns false if 
+ *                element is not found.
+ * =====================================================================================
+ */
+template< class DATA >
+bool Table<DATA>::remove ( DATA & data ) {
+    unsigned int index;
+    if ( find( data ) ) {
+        index = hash( data );
+        table[index].remove( data );
+        count--;
+        return true;
+    }
+    return false;
+}
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  access
+ *  Description:  Finds element, moves to front, returns true. Else returns false.
+ * =====================================================================================
+ */
+template< class DATA >
+bool Table<DATA>::access ( DATA & data ) {
+    if ( !table.find( data ) )
+        return false;
+
+    // else
+    unsigned int index = hash( data );
+    table[index].remove( data );
+    table[index].push_front( data );
+    return true;
+}
+
+template< class DATA >
+Perform Table<DATA>::perform ( ) const {
+    Perform performance;
+    unsigned int loadFactor = count / table.size();
+    // Number of probes in a list
+    unsigned int probes = 0;
+
+    // Count probes
+    for ( int i = 0; i < table.size(); i++ ) { 
+        if (table[i].size() == 0 ) {
+            probes++;
+        } else {
+            probes += tables[i].size();
+        }
+    }
+
+    // Average unsuccessful search length
+    performance.unsuccessful[0] = probes / table.size();
+
+    // Average successful search length
+    performance.successful[0] = probes / count;
+
+    // Expected unsuccessful search length
+    performance.unsuccessful[1] = pow( ( table.size() - 1 ) / table.size(), count ) + count / table.size();
+
+    // Expected successful search length
+    performance.successful[1] = 1 + ( count - 1 ) / ( 2 * table.size() );
+
+    return performance;
+}
+
+template< class DATA >
+list<DATA> & Table<DATA>::getOne ( unsigned int i ) {
+    return table[i];
+}
+

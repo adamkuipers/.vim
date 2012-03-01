@@ -1,0 +1,20 @@
+class Api::Instagram::FollowingPhotosController < ApplicationController
+
+  def index
+
+    if :page <= 0
+      render :json => { :error => "error, stupid" }
+    end
+
+    if :count <= 0
+      render :json => { :error => "error, stupid" }
+    end
+
+    account = PrintStudio::Application::Instagram.getAccount(cookies[:access_token])
+    result = account.getFollowingPhotosRange(params[:userID].to_i,params[:count].to_i,
+                                            params[:page].to_i * params[:count].to_i)
+    respond_to do |format|
+      format.any{render :json => result, :callback => params[:callback]}
+    end
+  end
+end

@@ -1,0 +1,3 @@
+<% photos.each(function(photo) { %>
+  <li><img class="selectable inactive" id="photo-<%=photo.id%>" src="<%= photo.get('url') %>" copies = 1></img></li>
+<% }); %>

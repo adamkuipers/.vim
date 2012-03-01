@@ -1,0 +1,39 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * 
+ *
+ *	Disjoint Subsets union-find 	Winter 2012
+ *
+ *      < Adam Kuipers>
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * */ 
+
+DisjointSubsets :: DisjointSubsets ( unsigned numberElements ) {
+    node = new vector<node>(numberElements);
+
+    for ( unsigned i = 0; i < numberElements; i++ ) {
+        node[i].parent = i;
+        node[i].rank = 0;
+    }
+}
+
+DisjointSubsets :: unsigned findDS ( unsigned index ) {
+    if ( x != node[index].parent ) 
+        node[index].parent = findDS ( node[index].parent );
+    return node[index].parent;
+}
+
+DisjointSubsets :: bool unionDS ( unsigned index1, unsigned index2) {
+    // Will be the smallest of index1 and index 2
+    unsigned newParent;
+    if ( node[index1].parent == node[index2].parent ) {
+        return false;
+    }
+
+    // Assign the smallest index value to parent
+    parent = (index1 <= index2) ? index1 :  index2;
+
+    node[index1].parent = parent;
+    node[index2].parent = parent;
+
+    return true;
+}

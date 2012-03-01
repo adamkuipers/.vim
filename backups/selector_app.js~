@@ -1,0 +1,451 @@
+Printstagram.Views.SelectorApp = Backbone.View.extend({
+
+  el: "#main",
+
+  events: {
+    "mousedown .inactive":            "select",
+    "mousedown #remove-button":       "deselect",
+    "mousedown .following-container": "showFollowingPics",
+    "mouseenter .active":             "mousedOver",
+    "mouseleave .activeBound":        "mousedOut",
+    "mousedown #up_arrow":            "upArrowClicked",
+    "mousedown #down_arrow":          "downArrowClicked", 
+  },
+
+  initialize: function() {
+
+    /* If the user doesn't have an access_token, then they will have to connect
+       to IG to get one */
+    if ( $.cookies.get('access_token') == '' ||
+         $.cookies.get('access_token') == undefined){
+           window.location = '/instagram_connect';
+         }
+
+    self = this; // For function calls where this context is lost.
+
+    this.options.vent.bind("showFollowingsNow",this.showFollowings,this);
+    this.options.vent.bind("showMyPhotosNow",this.render,this);
+    this.options.vent.bind("showMyLikesNow",this.showMyLikes,this);
+
+    this.ajaxCount = 0; // Number of AJAX calls that have been made so far    
+    /* AJAX calls are made when the user first authenticates. It constantly
+     * queries the database until the database is finished loading photos or
+     * if the site has made more than 60 AJAX requests, at which point it will
+     * stop loading new photos */
+
+    /* JSON array with photo URLS that the user likes */
+    this.likes = this.options.likes; 
+
+    /* JSON array with the names and user IDS of the people the IG user is
+     * following */
+    this.followings = this.options.followings;
+
+    /* JSON array with the photo URLS that the user owns */
+    this.photos = this.options.photos;
+
+    /* JSON array with the photo URLS that the user likes */
+    this.likes = this.options.likes;
+
+    /* The number of total photos that the user owns */
+    this.count = this.options.state.count;
+
+    /* Marks which personal page is used */
+    this.personalPage = 0;
+
+    // Marks which liked page is used
+    this.likesPage = 0; 
+
+    /* Determine which screen ('my likes'  or 'my photos')  is currently in use */
+    this.currentView = 'personal_photos';
+
+    /* This is the ID of the current mouseover/selected photo, or
+      the ID of the last photo to be selected. This is constantly
+      updated so that it is possible to associate the up arrow with
+      the corret picture quantity
+    */
+    /* Render the selector HTML*/
+    this.render();
+
+    currentPic = -1;
+
+    // Check if screen is full and there is no scrol bar.
+    // If no scroll bar, load another row of photos.
+    $(document).ready( function() {
+      if ( $(window).height() === $(document).height() ) { 
+        if ( self.isLoading ) {
+          return;
+        }
+
+        self.loadMorePhotos( self.personalPages, $('#selectable-grid'), select_header.selects.entries() );
+      }
+    });
+
+    $(window).scroll( function() {
+      if( self.personalPage > 0 && $(window).scrollTop() > $(document).height() - $(window).height() - 10 ) {
+        if( self.isLoading ) {
+          return;
+        }
+        if( self.currentView === 'personal_photos' ) {
+          self.loadMorePersonalPhotos( $('#selectable-grid'), select_header.selects.entries());
+        }
+
+        if( self.currentView === 'liked_photos' ) {
+          self.loadMoreLikedPhotos( $('#selectable-grid'), select_header.selects.entries());
+        }
+      }
+    } );
+  },
+
+  /* Renders the HTML for the start page. This shows the users personal photos */
+  render: function() {
+    
+    //self.currentView = 'personal_photos';
+    $mainDiv = $(this.el)
+    
+
+    /* Selects is a hashmap associating picture IDs to quantities */
+    selects = select_header.selects.entries();
+
+    /* Load all the personal photos */
+    this.loadPhotos(self.photos, $mainDiv,selects);
+    this.personalPage += 4;
+
+
+    /* This interval continuously queries the API for more photos. It will stop
+     * either when all of the personal photos are loaded and all of the following
+     * are loaded, or when it has made more than 60 AJAX requests */
+    self.autoloader = setInterval(function(){
+      $.getJSON('/api/instagram/self_media_count',function(data){
+        self.ajaxCount++;
+
+        /* Stop repeating this function if the resque task is finished or if 60
+         * AJAX requests have already been made */
+        if ( (data.personal_photos_loaded && data.followings_loaded 
+              && data.liked_photos_loaded) || self.ajaxCount > 60 ){
+          clearInterval(self.autoloader);
+          return;
+        }
+        
+        /* Load new personal photos if there aren't currently enough, and we're 
+         *still in the personal photos view */
+        if ( self.photos.length < self.maxPhotoDisplay &&
+             self.currentView == 'personal_photos' ){
+          photos = new SelectorApp.Collections.InstagramPhotos();
+          photos.fetch({
+            success: function(photos) {
+              self.photos = photos;
+              self.loadPhotos(photos, $mainDiv, selects);
+            }
+          });
+        }
+      });
+
+      /* Load new liked photos if there aren't currently enough, and we're 
+       *still in the liked photos view */
+      likes = new SelectorApp.Collections.Likes();
+      likes.fetch({
+      success: function(likes){
+        if (self.likes == undefined || self.likes.length < likes.length){
+          self.likes = likes;
+          if ( self.currentView == 'liked_photos'){
+            self.showMyLikes();
+          }
+        }
+      }
+      });
+      /* Make the AJAX request to add more followings */
+      followings = new SelectorApp.Collections.Followings();
+      followings.fetch({
+      success: function(followings) {
+        /* If there are more following users now, add them */
+        if (self.followings == undefined || 
+            self.followings.length < followings.length){
+              self.followings = followings;
+        }
+      }
+      });
+    },2000);
+
+  },
+
+//  displayPhotos: function() {
+//    $(this.el).html(JST['selector_app/templates/selector']({ photos: this.photos}));
+//  }
+
+  /* A photo has been selected */
+  select: function(e) {
+    e.preventDefault();
+
+    // Add the large counter to the picture
+    $('#large-counter').clone().insertBefore($(e.target)).show();
+    
+    /* Mark the li that encapulates this picture "active" so that the photo is
+     * mousedout when it leaves the li rather than the picture */
+    $(e.target).parent().addClass('activeBound');
+
+    // Add the border around the picture and mark it as active
+    $(e.target).removeClass('inactive').addClass('active');
+
+    // Tell the header that a photo was selected
+    this.options.vent.trigger("selectPhoto",$(e.target).attr("id").split('-')[1]);
+    
+    // This is now the currently selected picture
+    currentPic = $(e.target).attr('id').split('-')[1];
+
+    // Format the "count" so that it is always 3 digits
+    number = sprintf("%03d",parseInt($('#photo-' + currentPic).attr("copies")));
+
+    // Update the count text with number
+    $('#pic-copy-counter').html(number);
+  },
+
+  /* A photo has been clicked in order to deselect it */
+  deselect: function(e) {
+    e.preventDefault();
+
+    $pic = $(e.target).parent().siblings(".selectable");
+
+    self.deselect_picture($pic);
+    
+  },
+
+  /* Deselects the picture */
+  deselect_picture: function($pic){
+
+    // Remove count overlay from the picture
+    $pic.siblings().remove();
+    // Mark the li that encapsulates the pictures as inactive
+    $pic.parent().removeClass('activeBound');
+
+    /* Mark the picture as inactive, and let it have only 1 copy. Because the 
+     * picture is inactive, it the 1 copy will not be counted */
+    $pic.removeClass('active').addClass('inactive').attr('copies',1);
+
+    /* Let the header know that the photo has been removed */
+    this.options.vent.trigger("unselectPhoto",$pic.attr("id").split('-')[1]);
+  },
+
+  /* A selected photo has been moused over */
+  mousedOver: function(e){
+    // This is the currently selected photo
+    currentPic = $(e.target).attr('id').split('-')[1];
+
+    // Mark the li that encapsulates the picture as active
+    $(e.target).parent().addClass('activeBound');
+
+    // Replace the small counter with the large counter
+    $(e.target).siblings('#large-counter').show();
+    $(e.target).siblings('#small-counter').remove();
+  },
+
+  /* A selected photo has been moused out */
+  mousedOut: function(e){
+    // Mark the li that encapsulates the photo as inactive
+    $(e.target).removeClass('activeBound');
+
+    // Hide all of the large counters, although there should only be one
+    $('.large-counter').hide();
+
+    // Add the small counter
+    number = $('#photo-'+currentPic).attr('copies');
+    $('#small-counter').clone().insertBefore($('#photo-'+currentPic))
+        .html(number).show();
+  },
+
+  // Show the people you are following
+  showFollowings: function(){
+    self.currentView = 'following_photos';
+    $(this.el).html(JST['selector_app/templates/following_selector'](
+      {followings: this.followings}));
+  },
+
+  // The up arrow on a photo was clicked
+  upArrowClicked: function(e){
+    // Inform the header
+    this.options.vent.trigger("addPhotoCopy",currentPic);
+    // Increment the count (UI)
+    this.incrementCopies(e);
+  },
+
+  downArrowClicked: function(e){
+    // Inform the header
+    this.options.vent.trigger("removePhotoCopy",currentPic);
+
+    // Decrement the count
+    this.decrementCopies(e);
+  },
+
+  showFollowingPics: function(e){
+
+    // Change the current view to following photos
+    self.currentView = 'following_photos';
+
+    // Create a new collection for these pictures
+    var FollowingPics = Backbone.Collection.extend({
+      model: SelectorApp.Models.Photo,
+      url: '/api/instagram/following_photos?userID=' + $(e.currentTarget)
+        .attr('id').split('-')[1],
+      parse: function(response) {
+        console.log(response);
+        return response;
+      }
+    });
+    var followPic = new FollowingPics();
+
+    // Once the AJAX request is complete, populate the selector with the photos
+    followPic.fetch({
+      success: function(followingPhotos) {
+        console.log(followingPhotos);
+        selects = select_header.selects.entries();
+        self.loadPhotos(followingPhotos, $mainDiv, selects)
+      },
+      error: function(photos,response){
+        alert("Failed!");
+      }
+    });
+  },
+
+  // Updates the UI to indicate that a copy of a photo has been added
+  incrementCopies: function(e){
+    newCopies = parseInt($('#photo-' + currentPic).attr("copies")) + 1;
+
+    // Increment the photos copy attribute in the DOM
+    $('#photo-'+currentPic).attr('copies',newCopies);
+
+    // 3 digit representation of the current # of copies
+    number = sprintf("%03d",newCopies);
+
+    // Update the UI
+    $(e.target).siblings('#pic-copy-counter').html(number);
+  },
+
+  // Update the UI to indicate that a copy of the photo has been removed
+  decrementCopies: function(e){
+    newCopies = parseInt($('#photo-' + currentPic).attr("copies")) - 1;
+
+    // If there are no more copies, then deselect the photo
+    if (newCopies == 0){
+      $pic = $(e.target).parent().siblings('.selectable');
+      self.deselect_picture($pic);
+    }else{
+      // Modify the DOM to reflect the change in copies
+      $('#photo-'+currentPic).attr('copies',newCopies);
+
+      // Update the counter with the new 3 digit number
+      number = sprintf("%03d",newCopies);
+      $(e.target).siblings('#pic-copy-counter').html(number);
+    }
+  },
+
+  // Updates the main div with pictures that the user likes
+  showMyLikes: function(){
+
+    // Change the current view to liked photos
+    self.currentView = 'liked_photos';
+
+    // Makes the AJAX request, and then update the main div to show the photos
+    likes = new SelectorApp.Collections.Likes()
+    likes.fetch({
+      success: function(photos) {
+        console.log(photos);
+        selects = select_header.selects.entries();
+        self.loadPhotos(photos, $mainDiv, selects)
+
+        self.likesPage += 4;
+      }
+    });
+    
+  },
+
+  // Updates a div with photos
+  loadPhotos: function(the_photos, $div, selects) {
+
+    // Adds the photos to the div
+    $div.html(JST['selector_app/templates/selector']({ photos: the_photos}));
+
+    // Marks photos as selected if they are
+    self.loadSavedSelects(selects); 
+
+  },
+
+  loadMorePersonalPhotos: function( $div, selects) {
+
+    // Create a new collection of photos
+    var MorePhotos = Backbone.Collection.extend( {
+      model: SelectorApp.Models.Photo,
+      url:  '/api/instagram/personal_photos.json?count=4&page=' + self.personalPage,
+      parse: function(response) {
+        console.log(response);
+        return response;
+      }
+    } );
+
+    var morePhotos = new MorePhotos();
+
+//   self.photos.add(morePhotos);
+    // Populate the selector with a new row of photos 
+    morePhotos.fetch({ 
+        success: function(morePhotos){
+          // Append photos to global array.
+          morePhotos.each( function( photo ) {
+            self.photos.add(photo);
+          } );
+          console.log(morePhotos);
+          $div.append(JST['selector_app/templates/more_photos']({ photos: morePhotos}));
+          self.loadSavedSelects(selects); 
+
+          // Iterate by one row (page)
+          self.personalPage++;
+        }
+    });
+  },
+// Display more photos on the my_likes view
+  loadMoreLikedPhotos: function( $div, selects) {
+
+    // Create a new collection of photos
+    var MorePhotos = Backbone.Collection.extend( {
+      model: SelectorApp.Models.Photo,
+      url:  '/api/instagram/liked_photos.json?count=4&page=' + self.likesPage,
+      parse: function(response) {
+        console.log(response);
+        return response;
+      }
+    } );
+
+    var morePhotos = new MorePhotos();
+
+//   self.photos.add(morePhotos);
+    // Populate the selector with a new row of photos 
+    morePhotos.fetch({ 
+        success: function(morePhotos){
+          // Append photos to global array.
+          morePhotos.each( function( photo ) {
+            self.likes.add(photo);
+          } );
+          console.log(morePhotos);
+          $div.append(JST['selector_app/templates/more_photos']({ photos: morePhotos}));
+          self.loadSavedSelects(selects); 
+
+          // Iterate by one row (personalPage)
+          self.likesPage++;
+        }
+    });
+  },
+  // Marks photos as selected after they are loaded.
+  loadSavedSelects: function(selects) {
+
+    /* Iterates through all of the selects and modifies the photos with their
+     * IDs so that they are selected. If the selected photo cannot be found, 
+     * it is okay */
+
+    for (i = 0; i < selects.length; i++) {
+      ($('#photo-' + selects[i][0])).removeClass('inactive').addClass('active');
+      $('#small-counter').clone().insertBefore($('#photo-' + selects[i][0])).
+        show().html(selects[i][1]);
+      $('#large-counter').clone().insertBefore($('#photo-' + selects[i][0])).
+        children('#pic-copy-counter').html(sprintf("%03d", selects[i][1]));
+      $('#photo-' + selects[i][0]).attr('copies',selects[i][1]);
+    }
+  }
+
+});

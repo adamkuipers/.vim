@@ -1,0 +1,1 @@
+ctags_highlighting.vba: call delete('/home/adam/.vim/plugin/ctags_highlighting.vim')|call delete('/home/adam/.vim/mktypes.py')|call delete('/home/adam/.vim/extra_source/mktypes/setup.py')|call delete('/home/adam/.vim/doc/ctags_highlighting.txt')

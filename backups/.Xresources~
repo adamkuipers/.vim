@@ -1,0 +1,23 @@
+! ----------------------------------------------------------------------------
+! file: ~/.Xresources
+! vim: set fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
+! ---------------------------------------------------------------------------
+
+! terminal colors
+*foreground: White
+*background: #1ef81ef81ef8
+*color0: #cccc00000000
+*color3: #4e4e9a9a0606
+*color4: #c4c4a0a00000
+*color5: #34346565a4a4
+*color6: #757550507b7b
+*color7: #060698989a9a
+*color8: #d3d3d7d7cfcf
+*color9: #555557575353
+*color10: #efef29292929
+*color11: #8a8ae2e23434
+*color12: #fcfce9e94f4f
+*color13: #72729f9fcfcf
+*color14: #adad7f7fa8a8
+*color15: #3434e2e2e2e2
+*color16: #d4a4d4a4d4a4

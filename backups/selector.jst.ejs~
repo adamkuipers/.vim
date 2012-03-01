@@ -1,0 +1,21 @@
+<div id="selectable-grid">
+  <div class = "large-counter" id = "large-counter">
+    <img id = "up_arrow" src = "assets/up_arrow.png" />
+    <img id = "down_arrow" src = "assets/down_arrow.png" />
+    <div id = "pic-copy-counter">001</div>
+    <img id = "remove-button" src = "assets/cancel.png" />
+  </div>
+  <div id = "small-counter">1</div>
+  <ul>
+    <% 
+      photos.each(function(index, photo) { 
+      var i = 0;
+      if ( i >=startIndex && i <= stopIndex ) 
+    %>
+        <li><img class="selectable inactive" id="photo-<%=photo.id%>" src="<%= photo.get('url') %>" copies = 1></img></li>
+    <% 
+      i++;
+      }); 
+    %>
+  </ul>
+</div>
