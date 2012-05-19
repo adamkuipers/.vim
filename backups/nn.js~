@@ -1,0 +1,4 @@
+$(function() {
+  $('div#front').css('height', $(window).height());
+  $('div#container').css('top', $(window).height());
+});

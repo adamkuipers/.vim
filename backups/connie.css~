@@ -1,0 +1,463 @@
+.connie{
+  a{
+    text-decoration: none;
+  }
+  .marginBottom
+  {
+    margin-bottom:5px;
+  }
+  .pink
+  {
+    background-color:#F6585D;
+  }
+  .pinkText
+  {
+    color:#F6585D;
+  }
+  .mediumGray
+  {
+    background-color:#9D9D9D;
+  }
+  .mediumGrayText
+  {
+    color:#9D9D9D;
+  }
+  .lightGray
+  {
+    background-color:#CCCCCC;
+  }
+  .lightGrayText
+  {
+    color:#CCCCCC;
+  }
+  .darkGray
+  {
+    background-color:#666666;
+  }
+  .darkGrayText
+  {
+    color:#666666;
+  }
+  .green
+  {
+    background-color:#ADDE8C;
+  }
+  .greenText
+  {
+    color:#ADDE8C;
+  }
+  .yellow
+  {
+    background-color:#FDBC15;
+  }
+  .yellowText
+  {
+    color:#FDBC15;
+  }
+  .blue
+  {
+    background-color:#54CDE9; 
+  }
+  .blueText
+  {
+    color:#54CDE9;  
+  }
+  body #app-container
+  {
+    width:1200px;
+    margin:20px auto;
+  }
+  #cart-navigation, #review-navigation
+  {
+    width:209px;
+    margin:20px 0 20px 20px;
+    float:left;
+    font-family:FuturaSTDBold;
+  }
+  .button
+  {
+    width:160px;
+    padding:20px 10px;
+    cursor:pointer;
+    -webkit-border-radius:9px;
+    -moz-border-radius:9px;
+    -ms-border-radius:9px;
+    -o-border-radius:9px;
+    border-radius:9px;
+    clear:both;
+  }
+  .buttonText
+  {
+    font-family:FuturaSTDBold;
+    font-size:0.9em;
+    color:#FFF;
+    text-align:center;
+    text-transform:uppercase;
+    letter-spacing:2px;
+  }
+  #cart-navigation #user-info
+  {
+    width:180px;
+    padding:15px 0;
+  }
+  #cart-navigation #user-info-text
+  {
+    font-size:0.7em;
+    letter-spacing:1px;
+    color:#666666;
+    text-transform:lowercase;
+    line-height:1.6em;
+    margin-top:-3px;
+    float:left;
+  }
+  #cart-navigation #logout
+  {
+    margin:-5px 0 15px 20px;
+    padding:2px 14px;
+    font-size:0.6em;
+    letter-spacing:1px;
+    color:#FFFFFF;
+    line-height:1.6em;
+    cursor:pointer;
+    -webkit-border-radius:9px;
+    -moz-border-radius:9px;
+    -ms-border-radius:9px;
+    -o-border-radius:9px;
+    border-radius:9px;
+    float:right;
+  }
+  #cart-navigation .count
+  {
+    -webkit-box-shadow:inset 1px 2px 1px 1px #666666;
+    -moz-box-shadow:inset 1px 2px 1px 1px #666666;
+    -ms-box-shadow:inset 1px 2px 1px 1px #666666;
+    -o-box-shadow:inset 1px 2px 1px 1px #666666;
+    box-shadow:inset 1px 2px 1px 1px #666666;
+    background:#828282;
+    -webkit-border-radius:21px;
+    -moz-border-radius:21px;
+    -ms-border-radius:21px;
+    -o-border-radius:21px;
+    border-radius:21px;
+    border:10px;
+    border-bottom:1px solid #D6D6D6;
+    overflow:hidden;
+    padding:3px 9px;
+  }
+  #cart-navigation #my-friends
+  {
+    width:180px;
+    margin:14px 0;
+    padding:20px 0 3px;
+  }
+  #cart-navigation .friends
+  {
+    font-family:FuturaLTRegular;
+    font-size:0.8em;
+    color:#BBBBBB;
+    background-color:#FFFFFF;
+    text-align:left;
+    text-transform:none;
+    border-left:1px solid #BBBBBB;
+    border-right:1px solid #CCCCCC;
+    margin:14px 0;
+    padding:10px 12px;
+  }
+  #cart-navigation .friends li
+  {
+    padding:5px 0;
+  }
+  #cart-header, #review-header
+  {
+    width:940px;
+    margin-top:10px;
+    padding:10px;
+    overflow:hidden;
+    font-family:inherit;
+  }
+  #cart-header #textDiv, #review-header #textDiv
+  {
+    float:left;
+    width:80%;
+  }
+  #cart-header #textDiv h1, #review-header #textDiv h1
+  {
+    margin-top:20px;
+    font-size:2.1em;
+    text-transform:uppercase;
+    letter-spacing:4px;
+  }
+  #cart-header #textDiv h2, #review-header #textDiv h2
+  {
+    margin-top:30px;
+    font-size:0.8em;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    line-height:1.6em;
+  }
+  #cart-header #buttonDiv, #review-header #buttonDiv
+  {
+    float:right;
+    margin-top:10px;
+  }
+  #cost{
+    display: inline;
+  }
+  #orders, #review
+  {
+    width:940px;
+    padding:10px;
+    overflow:hidden;
+    font-family:inherit;
+  }
+  #grayArrowLeft
+  {
+    a{
+      color:#FFFFFF;
+    }
+    cursor:pointer;
+    background:url(/assets/grayArrowLeft.png);
+    width:201px;
+    height:54px;
+    margin:14px 0 0 -22px;
+  }
+  #gray-grid
+  {
+    width:920px;
+    margin-top:10px;
+    overflow:hidden;
+    background:#F0F0F0;
+    -webkit-border-radius:7px;
+    -moz-border-radius:7px;
+    -ms-border-radius:7px;
+    -o-border-radius:7px;
+    border-radius:7px;
+    padding:15px;
+  }
+  #gray-grid .selectable
+  {
+    width:200px;
+    height:200px;
+    float:left;
+    margin:8px;
+  }
+  #gray-grid .active
+  {
+    border:7px solid #FFB267;
+    -webkit-border-radius:7px;
+    -moz-border-radius:7px;
+    -ms-border-radius:7px;
+    -o-border-radius:7px;
+    border-radius:7px;
+  }
+  #gray-grid .inactive
+  {
+    border:7px solid #FFF;
+  }
+  h3
+  {
+    letter-spacing:1px;
+    font-family:FuturaSTDBold;
+    color:#666666;
+    font-size:1.3em;
+    display:inline;
+  } 
+  #review-col1
+  {
+    width:150px;
+    float:left;
+    text-align:center;
+    line-height:90px;
+  }
+  #review-col2
+  {
+    width:520px;
+    float:left;
+    text-align:left;
+    font-family:FuturaLTRegular;
+    color:#666666;
+    font-size:0.9em;
+    line-height:1.6em;
+  }
+  #review-col3
+  {
+    width:60px;
+    float:left;
+  }
+  #review-col4
+  {
+    width:210px;
+    float:right;
+    text-align:center;
+  }
+  #greenArrow
+  {
+    cursor: pointer;
+    width:201px;
+    height:54px;
+    margin:10px 10px 0px;
+    float:right;
+    background-image:url(/assets/greenArrow.png);
+  }
+  .marginTop
+  {
+    margin-top:30px;
+  }
+  h4 /* used for "CAUTION" and "WARNING" */
+  {
+    text-transform:uppercase;
+    font-size:1.6em;
+    letter-spacing:2px;
+    display:inline;
+  }
+  h5 /* used for description that follows h4 */
+  {
+    font-size:.8em;
+    color:#979797;
+    letter-spacing:1px;
+    display:inline;
+  }
+  #cart-col1
+  {
+    width:150px;
+    float:left;
+    text-align:left;
+    line-height:80px;
+  }
+  #cart-col2
+  {
+    width:500px;
+    float:left;
+    text-align:left;
+    font-family:FuturaLTRegular;
+    color:#666666;
+    font-size:1.3em;
+    letter-spacing:1px;
+    line-height:80px;
+  }
+  #cart-col3
+  {
+    width:270px;
+    float:right;
+    text-align:center;
+  }
+  .cart-photo
+  {
+    img{
+      width:150px;
+      height:150px;
+    }
+    width:160px;
+    height:160px;
+    margin-right:20px;
+    float:left;
+  }
+  .cart-info
+  {
+    width:700px;
+    height:180px;
+    float:left;
+  }
+  .product-name
+  {
+    display: block;
+    margin-bottom: 14px;
+  }
+  .cart-product
+  {
+    display: inline;
+    width:570px;
+    height:150px;
+    float:left;
+    font-family:FuturaLTRegular;
+    color:#666666;
+    font-size:1.3em;
+    letter-spacing:1px;
+  }
+  .cart-edit
+  {
+    font-family:FuturaLTRegular;
+    display: block;
+    text-decoration: none;
+    width:110px;
+    margin-bottom: 10px;
+    padding:2px 10px;
+    font-size:0.8em;
+    letter-spacing:1px;
+    text-align:center;
+    color:#FFFFFF;
+    line-height:1.6em;
+    cursor:pointer;
+    -webkit-border-radius:9px;
+    -moz-border-radius:9px;
+    -ms-border-radius:9px;
+    -o-border-radius:9px;
+    border-radius:9px;
+  }
+  .quantity-price
+  {
+    float: left;
+    width: 100%;
+    margin: -50px 200px 0px 0px;
+  }
+  .cart-quantity
+  {
+    display: inline;
+    width:50%;
+    float:left;
+    text-align:right;
+    font-family:FuturaLTRegular;
+    font-size:1.3em;
+    margin-left: 200px;
+  }
+  .cart-quantity-selector
+  {
+    width:10%;
+    margin:-10px 1.5%;
+    float:left;
+    color:#FFFFFF;
+    padding:10px;
+  }
+  .arrow-div
+  {
+    height:10px;
+  }
+  .arrow-up
+  {
+    width:0;
+    height:0;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:10px solid #FFFFFF;
+    margin-bottom:5px;
+    cursor:pointer;
+  }
+  .arrow-down
+  {
+    width:0;
+    height:0;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-top:10px solid #FFFFFF;
+    cursor:pointer;
+  }
+  .arrow-text
+  {
+    float:right;
+    margin-top:-5px;
+  }
+  .cart-price
+  {
+    width:5%;
+    float:left;
+    text-align:right;
+  }
+  hr
+  {
+    width:960px;
+    float:right;
+    color:#CCCCCC;
+    margin-bottom:30px;
+  }
+
+}

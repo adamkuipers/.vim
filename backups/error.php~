@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html dir='ltr' lang='en-US'>
+<head>
+	<!--[if lt ie 9]> 
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></Script> 
+	<![endif]-->
+<title> Error </title>
+<link rel="stylesheet" type="text/css" media="all" href="style1.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
+<link rel="shortcut icon" href="http://socialprintstudio.com/images/SP_icon.gif" />
+</head>

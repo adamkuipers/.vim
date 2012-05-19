@@ -1,0 +1,17 @@
+%html
+  %body
+    %div.connie#app-container
+      %div{:id => "cart-navigation"}
+        %a{:href => "http://printstagr.am"}
+          %div{:class => "button buttonText pink"} Prinstagram
+        %a{:href => "http://prinstagr.am"}
+          %div{:id => "grayArrowLeft", :class => "buttonText"}
+            %span{:style => "line-height: 54px; margin-left: 1.5em;"} Keep Shopping
+      %div{:id => "cart-header"}
+        %div{:id => "textDiv", :class => "mediumGrayText"}
+          %h1 Order confirmation
+          %h2 Your order has been placed! You will get an email shortly with details!
+          %br
+          %br
+          %br
+          %h2 Thank you for ordering from Printstagram.

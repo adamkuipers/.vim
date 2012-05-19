@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+  <title>Social Print Studio - Instaprinter</title>
+  <link rel='stylesheet' type='text/css' href='stylesheets/landing_page.css' />
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
+  <link rel='shortcut icon' href='img/social-print-studio-logomark.png' />
+</head>
+<body>
+  <div id='border_wrap'>
+    <div id='bgimage'>
+      <img id='bg' src='img/bg6.jpg' />
+    </div>
+    <div id='printer'>
+      <br />
+      <img id='logo' src='img/placeholder.png' />
+      <h1 id='tagline'>
+        Finally!
+        <br />
+        A Printer for My Generation!
+      </h1>
+    </div>
+  </div>
+
+  <div class='center'>
+    <img src='img/social-print-studio-logomark.png' />
+  </div>
+  <div id='center_column' class='center' >
+    <div class='border'>
+      <div class='section middle'>
+
+        <h2>
+          Finally, a Printer for my Generation!
+        </h2>
+        <p id='summary'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat, felis nec iaculis malesuada, velit odio malesuada tortor, eu lobortis magna libero a neque. Donec consequat nisl et diam vestibulum laoreet. Aliquam imperdiet eros eros, id porttitor turpis. Aliquam euismod nunc sapien, et tempus arcu. Donec varius dictum lorem ut consectetur. Nullam eu lorem sit amet diam facilisis laoreet. Phasellus dolor purus, egestas eget venenatis eget, aliquam eu purus. Phasellus lorem justo, pharetra non hendrerit a, mattis et sem.
+        </p>
+        <img id='printer_image' src='img/printer_480x318.jpg' />
+      </div>
+    </div>
+    <div class='section' id='video'>
+      <iframe width="560" height="315" src="http://www.youtube.com/embed/4ptezlGhBDo" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+<body>

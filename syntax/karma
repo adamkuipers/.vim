@@ -1,0 +1,500 @@
+Script started on Tue 17 Apr 2012 11:11:37 AM PDT
+created by
+Yi Zhao
+ 
+script type
+syntax
+ 
+description
+Hi JavaScript and VIM funs, 
+
+If you want to use VIM to edit/view the JavaScript files, you should have this one. 
+Replace it with the javascript syntax file included with the VIMRUNTIME. 
+
+Why it is here: 
+Because I found that the originaly one which packed with the VIMRUNTIME didn't work very well for the JS files in Mozilla Browser/SeaMonkey/Firefox and Dojo. So I decided to some refine on it. 
+
+Hope it is also useful for you~~~ 
+
+Good Luck, 
+
+Yi Zhao (ZHAOYI) 
+Blog: http://linuxyz.blogspot.com/
+ 
+install details
+M$ Windows: put at $VIMRUNTIME/syntax/javascript.vim 
+or 
+Unix: put it at ~/.vim/syntax/javascript.vim
+ 
+rate this script	Life Changing  Helpful  Unfulfilling   
+script versions (upload new version)
+Click on the package to download.
+
+package	script version	date	Vim version	user	release notes
+javascript.vim	0.7.7	2009-06-04	6.0	Yi Zhao	Add "undefined" as a type keyword
+javascript.vim	0.7.6	2008-09-09	6.0	Yi Zhao	Change the 'syntax sync' method to improve the performance with large JavaScript files. 
+The old way 'syntax sync fromstart' is too slow to handle the files greater than 2000 lines.
+javascript.vim	0.7.5	2007-05-17	6.0	Yi Zhao	1, Get the vimdiff problem fixed finally. 
+  Matthew Gallant reported the problem and test the fix. ;) 
+
+2, Follow the suggestioin from Ingo Karkat. 
+  The 'foldtext' and 'foldlevel' settings should only be changed if the file being edited is pure JavaScript, not if JavaScript syntax is embedded inside other syntaxes. 
+
+3, Remove function FT_JavaScriptDoc(). Since VIM do the better than me.
+javascript.vim	0.7.4	2007-05-14	6.0	Yi Zhao	1, Fix a bug reported by Matthew Gallant. 
+   It will cause the vimdiff (6.x) freezes (chokes, with a 100% cpu usage) and never finally displays the diff between the files. The script need to be finished by press CTRL+C. 
+
+2, Add some more JSDoc tags which used by Yahoo! UI 
+
+javascript.vim	0.7.3	2007-03-13	6.0	Yi Zhao	Add the keywords for JavaScript 1.7: let, yield,
+javascript.vim	0.7.2	2007-01-30	6.0	Yi Zhao	Turn off the DOM2, HTML, and CSS speicified attributes and methods by default. 
+
+if you like it please add follow code into your .vimrc file. 
+let javascript_enable_domhtmlcss=1 
+
+I really hate the inaccuracy syntax highlight. 
+
+Thanks, 
+
+ZHAOYI   
+
+
+javascript.vim	0.7.1	2007-01-05	6.0	Yi Zhao	1, Add DOM2, HTML, and CSS speicified attributes and methods, based on   
+http://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/ecma-script-binding.html 
+    http://www.dannyg.com/ref/jsquickref.html 
+    Thanks Claudio Fleiner <claudio@fleiner.com> for the great idea. 
+2, Minor bug fix for JSDoc. 
+3, Minor bug fix for comment highlight. 
+
+NOTE: 
+  The syntax detection for DOM/HTML/CSS options are tricky, it can't be handled 100%   
+accuracy by using the regex  based highlight system. 
+  If the DOM/HTML/CSS highlight make you unhappy, you can simply add these: 
+
+let javascript_ignore_domhtmlcss=1 
+
+  into your .vimrc file to prevent the highlight on DOM/HTML/CSS functions and attributes. 
+
+Thanks, 
+
+Yi
+javascript.vim	0.7.0	2006-11-17	6.0	Yi Zhao	Add all keywords/exceptions defined in ECMAScript Language Specification Edition 3.
+javascript.vim	0.6.9	2006-11-01	6.0	Yi Zhao	1, Fix a bug of javaScriptLineComment which mark the code line which follows the indent empty // as comment. 
+2, Modify the javaScriptLinecomment folding mode, line comments only fold start the full line comment. 
+javascript.vim	0.6.8	2006-10-29	6.0	Yi Zhao	Fix the function FT_JavaScriptDoc() redefine warning when switch the buffer in multi-buffer mode.
+javascript.vim	0.6.7	2006-10-25	6.0	Yi Zhao	1. JSDoc parameter do recogonize "#.:/" at any position. 
+2. The "$" can appear at any position of the function name. 
+3. The continous line comments will be folding in fold mode.
+javascript.vim	0.6.6	2006-10-22	6.0	Yi Zhao	1. Rename the syntax group name to javaScript* to follow the syntax 
+2, The unmached "[]", "()", and "{}" can be detected. 
+
+javascript.vim	0.6.5	2006-10-21	6.0	Yi Zhao	1, Add the highlight for Float number 
+2, Refine the]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ created by
+
+No command 'created' found, did you mean:
+ Command 'createdb' from package 'postgresql-client-common' (main)
+created: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ Yi Zhao
+
+Yi: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$  
+
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ script type
+
+Script started, file is type
+syntax
+ 
+description
+Hi JavaScript and VIM funs, 
+
+If you want to use VIM to edit/view the JavaScript files, you should have this one. 
+Replace it with the javascript syntax file included with the VIMRUNTIME. 
+
+Why it is here: 
+Because I found that the originaly one which packed with the VIMRUNTIME didn't work very well for the JS files in Mozilla Browser/SeaMonkey/Firefox and Dojo. So I decided to some refine on it. 
+
+Hope it is also useful for you~~~ 
+
+Good Luck, 
+
+Yi Zhao (ZHAOYI) 
+Blog: http://linuxyz.blogspot.com/
+ 
+install details
+M$ Windows: put at $VIMRUNTIME/syntax/javascript.vim 
+or 
+Unix: put it at ~/.vim/syntax/javascript.vim
+ 
+rate this script	Life Changing  Helpful  Unfulfilling   
+script versions (upload new version)
+Click on the package to download.
+
+package	script version	date	Vim version	user	release notes
+javascript.vim	0.7.7	2009-06-04	6.0	Yi Zhao	Add "undefined" as a type keyword
+javascript.vim	0.7.6	2008-09-09	6.0	Yi Zhao	Change the 'syntax sync' method to improve the performance with large JavaScript files. 
+The old way 'syntax sync fromstart' is too slow to handle the files greater than 2000 lines.
+javascript.vim	0.7.5	2007-05-17	6.0	Yi Zhao	1, Get the vimdiff problem fixed finally. 
+  Matthew Gallant reported the problem and test the fix. ;) 
+
+2, Follow the suggestioin from Ingo Karkat. 
+  The 'foldtext' and 'foldlevel' settings should only be changed if the file being edited is pure JavaScript, not if JavaScript syntax is embedded inside other syntaxes. 
+
+3, Remove function FT_JavaScriptDoc(). Since VIM do the better than me.
+javascript.vim	0.7.4	2007-05-14	6.0	Yi Zhao	1, Fix a bug reported by Matthew Gallant. 
+   It will cause the vimdiff (6.x) freezes (chokes, with a 100% cpu usage) and never finally displays the diff between the files. The script need to be finished by press CTRL+C. 
+
+2, Add some more JSDoc tags which used by Yahoo! UI 
+
+javascript.vim	0.7.3	2007-03-13	6.0	Yi Zhao	Add the keywords for JavaScript 1.7: let, yield,
+javascript.vim	0.7.2	2007-01-30	6.0	Yi Zhao	Turn off the DOM2, HTML, and CSS speicified attributes and methods by default. 
+
+if you like it please add follow code into your .vimrc file. 
+let javascript_enable_domhtmlcss=1 
+
+I really hate the inaccuracy syntax highlight. 
+
+Thanks, 
+
+ZHAOYI   
+
+
+javascript.vim	0.7.1	2007-01-05	6.0	Yi Zhao	1, Add DOM2, HTML, and CSS speicified attributes and methods, based on   
+http://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/ecma-script-binding.html 
+    http://www.dannyg.com/ref/jsquickref.html 
+    Thanks Claudio Fleiner <claudio@fleiner.com> for the great idea. 
+2, Minor bug fix for JSDoc. 
+3, Minor bug fix for comment highlight. 
+
+NOTE: 
+  The syntax detection for DOM/HTML/CSS options are tricky, it can't be handled 100%   
+accuracy by using the regex  based highlight system. 
+  If the DOM/HTML/CSS highlight make you unhappy, you can simply add these: 
+
+let javascript_ignore_domhtmlcss=1 
+
+  into your .vimrc file to prevent the highlight on DOM/HTML/CSS functions and attributes. 
+
+Thanks, 
+
+Yi
+javascript.vim	0.7.0	2006-11-17	6.0	Yi Zhao	Add all keywords/exceptions defined in ECMAScript Language Specification Edition 3.
+javascript.vim	0.6.9	2006-11-01	6.0	Yi Zhao	1, Fix a bug of javaScriptLineComment which mark the code line which follows the indent empty // as comment. 
+2, Modify the javaScriptLinecomment folding mode, line comments only fold start the full line comment. 
+javascript.vim	0.6.8	2006-10-29	6.0	Yi Zhao	Fix the function FT_JavaScriptDoc() redefine warning when switch the buffer in multi-buffer mode.
+javascript.vim	0.6.7	2006-10-25	6.0	Yi Zhao	1. JSDoc parameter do recogonize "#.:/" at any position. 
+2. The "$" can appear at any position of the function name. 
+3. The continous line comments will be folding in fold mode.
+javascript.vim	0.6.6	2006-10-22	6.0	Yi Zhao	1. Rename the syntax group name to javaScript* to follow the syntax 
+2, The unmached "[]", "()", and "{}" can be detected. 
+
+javascript.vim	0.6.5	2006-10-21	6.0	Yi Zhao	1, Add the highlight for Float number 
+2, Refine the
+
+3, Define
+    e.g
+
+
+    Folding]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ syntax
+
+syntax: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$  
+
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ description
+
+description: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ Hi JavaScript and VIM funs, 
+
+Hi: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ If you want to use VIM to edit/view the Java Script files, you should have this one. 
+
+If: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ Replace it with the javascript syntax file i ncluded with the VIMRUNTIME. 
+
+No command 'Replace' found, did you mean:
+ Command 'seplace' from package 'alliance' (universe)
+ Command 'replace' from package 'mysql-server-5.5' (main)
+ Command 'replace' from package 'mysql-server-5.1' (universe)
+Replace: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ Why it is here: 
+
+No command 'Why' found, did you mean:
+ Command 'why' from package 'why' (universe)
+Why: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ Because I found that the originaly one which  packed with the VIMRUNTIME didn't work very well for the JS files in Mozi lla Browser/SeaMonkey/Firefox and Dojo. So I decided to some refine on it.  
+
+> 
+
+> Hope it is also useful for you~~~ 
+
+> 
+
+> Good Luck, 
+
+> 
+
+> Yi Zhao (ZHAOYI) 
+
+> Blog: http://linuxyz.blogspot.com/
+
+>  
+
+> install details
+
+> M$ Windows: put at $VIMRUNTIME/syntax/javascript.vim 
+
+> or 
+
+> Unix: put it at ~/.vim/syntax/javascript.vim
+
+>  
+
+> rate this scriptLife Changing  Helpful  Unfulfilling   
+> script versions (upload new version)
+> Click on the package to download.
+> 
+> packagescript versiondateVim versionuserrelease notes
+> javascript.vim 0.7.72009-06-046.0Yi ZhaoAdd "undefined" as a type keywor d
+> javascript.vim 0.7.62008-09-096.0Yi ZhaoChange the 'syntax sync' method  to improve the performance with large JavaScript files. 
+> The old way 'syntax sync fromstart' is too slow to handle the files grea ter than 2000 lines.
+> javascript.vim 0.7.52007-05-176.0Yi Zhao1, Get the vimdiff problem fixed  finally. 
+>   Matthew Gallant reported the problem and test the fix. ;) 
+> 
+> 2, Follow the suggestioin from Ingo Karkat. 
+>   The 'foldtext' and 'foldlevel' settings should only be changed if the  file being edited is pure JavaScript, not if JavaScript syntax is embedded  inside other syntaxes. 
+> 
+> 3, Remove function FT_JavaScriptDoc(). Since VIM do the better than me.
+> javascript.vim 0.7.42007-05-146.0Yi Zhao1, Fix a bug reported by Matthew  Gallant. 
+>    It will cause the vimdiff (6.x) freezes (chokes, with a 100% cpu usag e) and never finally displays the diff between the files. The script need  to be finished by press CTRL+C. 
+> 
+> 2, Add some more JSDoc tags which used by Yahoo! UI 
+> 
+> javascript.vim 0.7.32007-03-136.0Yi ZhaoAdd the keywords for JavaScript  1.7: let, yield,
+> javascript.vim 0.7.22007-01-306.0Yi ZhaoTurn off the DOM2, HTML, and CSS  speicified attributes and methods by default. 
+> 
+> if you like it please add follow code into your .vimrc file. 
+> let javascript_enable_domhtmlcss=1 
+> 
+> I really hate the inaccuracy syntax highlight. 
+> 
+> Thanks, 
+> 
+> ZHAOYI   
+> 
+> 
+> javascript.vim 0.7.12007-01-056.0Yi Zhao1, Add DOM2, HTML, and CSS speic ified attributes and methods, based on   
+> http://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/ecma-script-bind ing.html 
+>     http://www.dannyg.com/ref/jsquickref.html 
+>     Thanks Claudio Fleiner <claudio@fleiner.com> for the great idea. 
+> 2, Minor bug fix for JSDoc. 
+> 3, Minor bug fix for comment highlight. 
+> 
+> NOTE: 
+>   The syntax detection for DOM/HTML/CSS options are tricky, it can't be  handled 100%   
+Because: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ accuracy by using the regex  based highlight  system. 
+accuracy: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$   If the DOM/HTML/CSS highlight make you unh appy, you can simply add these: 
+If: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ let javascript_ignore_domhtmlcss=1 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$   into your .vimrc file to prevent the highl ight on DOM/HTML/CSS functions and attributes. 
+No command 'into' found, did you mean:
+ Command 'info' from package 'info' (main)
+into: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ Thanks, 
+Thanks,: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ Yi
+Yi: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ javascript.vim0.7.02006-11-176.0Yi ZhaoAdd a ll keywords/exceptions defined in ECMAScript Language Specification Editio n 3.
+javascript.vim0.7.02006-11-176.0Yi: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ javascript.vim0.6.92006-11-016.0Yi Zhao1, Fi x a bug of javaScriptLineComment which mark the code line which follows th e indent empty // as comment. 
+javascript.vim0.6.92006-11-016.0Yi: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 2, Modify the javaScriptLinecomment folding  mode, line comments only fold start the full line comment. 
+2,: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ javascript.vim0.6.82006-10-296.0Yi ZhaoFix t he function FT_JavaScriptDoc() redefine warning when switch the buffer in  multi-buffer mode.
+bash: syntax error near unexpected token `('
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ javascript.vim0.6.72006-10-256.0Yi Zhao1. JS Doc parameter do recogonize "#.:/" at any position. 
+javascript.vim0.6.72006-10-256.0Yi: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 2. The "$" can appear at any position of the  function name. 
+2.: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 3. The continous line comments will be foldi ng in fold mode.
+3.: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ javascript.vim0.6.62006-10-226.0Yi Zhao1. Re name the syntax group name to javaScript* to follow the syntax 
+javascript.vim0.6.62006-10-226.0Yi: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 2, The unmached "[]", "()", and "{}" can be  detected. 
+2,: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ javascript.vim0.6.52006-10-216.0Yi Zhao1, Ad d the highlight for Float number 
+javascript.vim0.6.52006-10-216.0Yi: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 2, Refine the
+2,: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 3, Define
+3,: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$     e.g
+No command 'e.g' found, did you mean:
+ Command 'eg' from package 'easygit' (universe)
+ Command 'ekg' from package 'ekg' (universe)
+ Command 'ekg' from package 'ekg-gtk' (universe)
+ Command 'eog' from package 'eog' (main)
+e.g: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$     Folding
+Folding: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$     By
+By: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ javascrip
+javascrip: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ For more information about 
+No command 'For' found, did you mean:
+ Command 'sor' from package 'pccts' (universe)
+ Command 'tor' from package 'tor' (universe)
+ Command 'vor' from package 'vor' (universe)
+For: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ Add dollar sigh as keyword to avoid irregula r highlight against the $break or $cont
+No command 'Add' found, did you mean:
+ Command 'ldd' from package 'libc-bin' (main)
+ Command 'dd' from package 'coreutils' (main)
+ Command 'ddd' from package 'ddd' (universe)
+ Command 'tdd' from package 'devtodo' (universe)
+Add: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ Thanks "Nai chao Wu" <superwunc AT hotmail.c om> for his help.
+bash: superwunc: No such file or directory
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ javascript
+javascript: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 2, Try the fold 
+2,: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ 
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ And there is a syntax highlight problem in h tml.vim 
+No command 'And' found, did you mean:
+ Command 'bnd' from package 'bnd' (universe)
+ Command 'snd' from package 'snd-nox' (universe)
+ Command 'snd' from package 'snd-gtk-pulse' (universe)
+ Command 'snd' from package 'snd-gtk-jack' (universe)
+ Command 'and' from package 'and' (universe)
+ Command 'nd' from package 'nd' (universe)
+And: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ If you want to make the JavaScript inside HT ML highlight properly, please commented out the follows lines in html.vim.  
+If: command not found
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ <pre> 
+bash: syntax error near unexpected token `newline'
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ " HtmlHiLink
+> 
+> </pre>
+> javascript.vim 0.4.12006-0
+> 
+> The dojo.js
+> 
+> 2, Update the jsS
+> 
+> If you are playing with the regex
+> j
+> 2, Add all Java
+> 3, Add jsBlock can be put in jsBracket .
+> javascript.v
+> 
+> I 
+> Yestorday I didn't test it under the UNIX. 
+> 
+> I
+> 
+> Thanks, 
+> 
+> Yi Zhao 
+> 
+> 
+> 
+> 
+> 
+> ^C
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ ls
+JavaRun.vim     karma    preview.vim  type
+javascript.vim  php.vim  snippet.vim  vjde.vim
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ vim javascript.vim 
+[?1000h[?1049h[?1h=[1;37r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[37;1H"javascript.vim" 303L, 18850C[>c[1;1H[93m  1 [m[96m" Vim syntax file[m
+[93m  2 [m[96m"[m [38;5;81mLanguage:[m[96m     JavaScript[m
+[93m  3 [m[96m"[m [38;5;81mMaintainer:[m[96m   Jose Elera Campana <[m[4m[38;5;81mhttps://github.com/jelera[m[96m>[m
+[93m  4 [m[96m"[m [38;5;81mLast Change:[m[96m  February 6, 2012[m
+[93m  5 [m[96m"[m [38;5;81mVersion:[m[96m      0.7.9[m
+[93m  6 [m[96m"[m [38;5;81mChanges:[m[96m      Go to [m[4m[38;5;81mhttps://github.com/jelera/vim-javascript-syntax[m[96m [m[7;1H[93m  7 [m[96m"               recent changes.[m
+[93m  8 [m[96m"[m [38;5;81mCredits:[m[96m      Zhao Yi, Claudio Fleiner, Scott Shattuck (This file is[m[9;1H[93m  9 [m[96m"               on their hard work), gumnos (From the #vim IRC Channel[m[10;1H[93m 10 [m[96m"               Freenode)[m
+[93m 11 
+ 12 if[m ![1m[96mexists[m[38;5;224m([m[95m"main_syntax"[m[38;5;224m)[m
+[93m 13 [m  [93mif[m [93mversion[m [93m<[m [95m600[m
+[93m 14 [m    [93msyntax[m [38;5;121mclear[m
+[93m 15 [m  [93melseif[m [1m[96mexists[m[38;5;224m([m[95m"b:current_syntax"[m[38;5;224m)[m
+[93m 16 [m    [93mfinish
+ 17 [m  [93mendif
+ 18 [m  [93mlet[m [1m[96mmain_syntax[m [93m=[m [95m'javascript'[m
+[93m 19 endif
+ 20 
+ 21 [m[96m" Drop fold if it set but vim doesn't support it.[m
+[93m 22 if[m [93mversion[m [93m<[m [95m600[m [93m&&[m [1m[96mexists[m[38;5;224m([m[95m"javaScript_fold"[m[38;5;224m)[m
+[93m 23 [m  [93munlet[m [1m[96mjavaScript_fold[m
+[93m 24 endif
+ 25 
+ 26 [m[96m"" dollar sigh is permittd anywhere in an identifier[m
+[93m 27 setlocal[m [38;5;81miskeyword[m+=$
+[93m 28 
+ 29 syntax[m [38;5;121msync[m [38;5;121mfromstart[m
+[93m 30 
+ 31 [m[96m"" JavaScript comments"{{{[m
+[93m 32 syn[m [38;5;121mkeyword[m [38;5;121mjavaScriptCommentTodo[m      TODO FIXME XXX TBD [38;5;224mcontained[m
+[93m 33 syn[m [38;5;121mmatch[m   [38;5;121mjavaScriptLineComment[m      [95m"\/\/.*"[m [38;5;224mcontains=[m@Spell,javaSc[34;1H[93m 34 syn[m [38;5;121mmatch[m   [38;5;121mjavaScriptCommentSkip[m      [95m"^[ \t]*\*[m[38;5;224m\([m[95m$[m[38;5;224m\|[m[95m[ \t]\+[m[38;5;224m\)[m[95m"[m
+[93m 35 syn[m [38;5;121mregion[m  [38;5;121mjavaScriptComment[m[9C [38;5;121mstart[m=[95m"/\*"[m  [38;5;121mend[m=[95m"\*/"[m [38;5;224mcontains[m[36;1H[1m[7m[1] javascript.vim [vim]                                1,1-1          Top[1;5H[?12l[?25h[?1000l[?1002hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?25l[m[37;64HG[1;5H[37;64H [35;5H[27m[m[H[2J[1;1H[93m269 [m    HiLink javaScriptBrowserObjects     Constant
+[93m270 
+271 [m    HiLink javaScriptDOMObjects[8C Constant
+[93m272 [m    HiLink javaScriptDOMMethods[8C Exception
+[93m273 [m    HiLink javaScriptDOMProperties      Type
+[93m274 
+275 [m    HiLink javaScriptAjaxObjects[7C htmlH1
+[93m276 [m    HiLink javaScriptAjaxMethods[7C Exception
+[93m277 [m    HiLink javaScriptAjaxProperties     Type
+[93m278 
+279 [m    HiLink javaScriptFuncName[10C Title
+[93m280 
+281 [m    HiLink javaScriptHtmlEvents[8C Special
+[93m282 [m    HiLink javaScriptHtmlElemProperties   Type
+[93m283 
+284 [m    HiLink javaScriptEventListenerKeywords Keyword
+[93m285 
+286 [m    HiLink javaScriptNumber[11C Number
+[93m287 [m    HiLink javaScriptPropietaryObjects Constant
+[93m288 
+289 [m  [93mdelcommand[m HiLink
+[93m290 endif
+291 
+292 [m[96m" Define the htmlJavaScript for HTML syntax html.vim[m
+[93m293 [m[96m"syntax clear htmlJavaScript[m
+[93m294 [m[96m"syntax clear javaScriptExpression[m
+[93m295 syntax[m [38;5;121mcluster[m  [38;5;121mhtmlJavaScript[m [38;5;224mcontains=[m@javaScriptAll,javaScriptBrack[28;1H[93m296 syntax[m [38;5;121mcluster[m  [38;5;121mjavaScriptExpression[m [38;5;224mcontains=[m@javaScriptAll,javaScrip[29;1H[93m297 
+298 let[m [1m[96mb[m:current_syntax [93m=[m [95m"javascript"[m
+[93m299 if[m main_syntax [93m==[m [95m'javascript'[m
+[93m300 [m  [93munlet[m [1m[96mmain_syntax[m
+[93m301 endif
+302 
+303 [m[96m" vim: ts=4[m
+[1m[7m[1] javascript.vim [vim]                                303,1-1        Bot[35;5H[?12l[?25h[?25l[m[37;64Hgk[35;5H[37;64H  [34;5H[36;59H[1m[7m2,0-[34;5H[?12l[?25h[?25l[m[37;64Hgk[34;5H[37;64H  [33;5H[36;59H[1m[7m1,1-[33;5H[?12l[?25h[?25l[m[37;64Hgk[33;5H[37;64H  [32;5H[36;59H[1m[7m0,[32;5H[?12l[?25h[?25l[m[37;64Hgk[32;5H[37;64H  [31;5H[36;57H[1m[7m299,[31;5H[?12l[?25h[?25l[m[37;64Hgk[31;5H[37;64H  [30;5H[36;59H[1m[7m8,[30;5H[?12l[?25h[?25l[m[37;64Hgk[30;5H[37;64H  [29;5H[36;59H[1m[7m7,0-[29;5H[?12l[?25h[?25l[m[37;64Hgk[29;5H[37;64H  [28;5H[36;59H[1m[7m6,1-[28;5H[?12l[?25h[?25l[m[37;64Hgk[28;5H[37;64H  [27;5H[36;59H[1m[7m5,[27;5H[?12l[?25h[?25l[m[37;64Hgk[27;5H[37;64H  [26;5H[36;59H[1m[7m4,[26;5H[?12l[?25h[?25l[m[37;64Hgk[26;5H[37;64H  [25;5H[36;59H[1m[7m3,[25;5H[?12l[?25h[?25l[m[37;64Hgk[25;5H[37;64H  [24;5H[36;59H[1m[7m2,[24;5H[?12l[?25h[?25l[m[37;64Hgk[24;5H[37;64H  [23;5H[36;59H[1m[7m1,0-[23;5H[?12l[?25h[?25l[m[37;64Hgk[23;5H[37;64H  [22;5H[36;59H[1m[7m0,1-[22;5H[?12l[?25h[?25l[m[37;64Hgk[22;5H[37;64H  [21;5H[36;58H[1m[7m89,[21;5H[?12l[?25h[?25l[m[37;64Hgk[21;5H[37;64H  [20;5H[36;59H[1m[7m8,0-[20;5H[?12l[?25h[?25l[m[37;64Hgk[20;5H[37;64H  [19;8H[36;59H[1m[7m7,1-4 [19;8H[?12l[?25h[?25l[m[37;64Hgk[19;8H[37;64H  [18;8H[36;59H[1m[7m6,[18;8H[?12l[?25h[?25l[m[37;64Hgk[18;8H[37;64H  [17;5H[36;59H[1m[7m5,0-1 [17;5H[?12l[?25h[?25l[m[37;64Hgk[17;5H[37;64H  [16;8H[36;59H[1m[7m4,1-4 [16;8H[?12l[?25h[?25l[m[37;64Hgk[16;8H[37;64H  [15;5H[36;59H[1m[7m3,0-1 [15;5H[?12l[?25h[?25l[m[37;64Hgk[15;5H[37;64H  [14;8H[36;59H[1m[7m2,1-4 [14;8H[?12l[?25h[?25l[m[37;64Hgk[14;8H[37;64H  [13;8H[36;59H[1m[7m1,[13;8H[?12l[?25h[?25l[m[37;64Hgk[13;8H[37;64H  [12;5H[36;59H[1m[7m0,0-1 [12;5H[?12l[?25h[?25l[m[37;64Hgk[12;5H[37;64H  [11;8H[36;58H[1m[7m79,1-4 [11;8H[?12l[?25h[?25l[m[37;64Hgk[11;8H[37;64H  [10;5H[36;59H[1m[7m8,0-1 [10;5H[?12l[?25h[?25l[m[37;64Hgk[10;5H[37;64H  [9;8H[36;59H[1m[7m7,1-4 [9;8H[?12l[?25h[?25l[m[37;64Hgk[9;8H[37;64H  [8;8H[36;59H[1m[7m6,[8;8H[?12l[?25h[?25l[m[37;64Hgk[8;8H[37;64H  [7;8H[36;59H[1m[7m5,[7;8H[?12l[?25h[?25l[m[37;64Hgk[7;8H[37;64H  [6;5H[36;59H[1m[7m4,0-1 [6;5H[?12l[?25h[?25l[m[37;64Hgk[6;5H[37;64H  [5;8H[36;59H[1m[7m3,1-4 [5;8H[?12l[?25h[?25l[m[37;64Hgk[5;8H[37;64H  [4;8H[36;59H[1m[7m2,[4;8H[?12l[?25h[?25l[m[37;64Hgk[4;8H[37;64H  [3;8H[36;59H[1m[7m1,[3;8H[?12l[?25h[?25l[m[37;64Hgk[3;8H[37;64H  [2;5H[36;59H[1m[7m0,0-1 [2;5H[?12l[?25h[?25l[m[37;64Hgk[2;5H[37;64H  [1;8H[36;58H[1m[7m69,1-4 [1;8H[?12l[?25h[?25l[m[37;64Hgk[1;8H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m268 [m[96m  " Ajax Highlighting[m[36;59H[1m[7m8,1-1 [7C99%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m267 [m[36;59H[1m[7m7,0-[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m266 [m  HiLink javaScriptCssStyles[11C Label[36;59H[1m[7m6,1-[10C8%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m265 [m[36;59H[1m[7m5,0-[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m264 [m  HiLink javaScriptHtmlElemFuncs[7C PreProc[36;59H[1m[7m4,1-[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m263 [m  HiLink javaScriptHtmlElemAttrs[7C Label[36;59H[1m[7m3,[12C7%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m262 [m[36;59H[1m[7m2,0-[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m261 [m  HiLink javaScriptDomElemFuncs[8C PreProc[36;59H[1m[7m1,1-[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m260 [m  HiLink javaScriptDomElemAttrs[8C Label[36;59H[1m[7m0,[12C6%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m259 [m  HiLink javaScriptDomNodeConsts[7C Constant[36;58H[1m[7m59,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m258 [m  HiLink javaScriptDomErrNo[12C Constant[36;59H[1m[7m8,[12C5%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m257 [m[36;59H[1m[7m7,0-[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m256 [m  HiLink javaScriptExceptions[10C Special[36;59H[1m[7m6,1-[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m255 [m  HiLink javaScriptGlobalObjects[7C Special[36;59H[1m[7m5,[12C4%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m254 [m  HiLink javaScriptSource[14C Special[36;59H[1m[7m4,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m253 [m  HiLink javaScriptSpecial[13C Special[36;59H[1m[7m3,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m252 [m  HiLink javaScriptLabel[15C Label[36;59H[1m[7m2,[12C3%[1;5H[?12l[?25h[?25l[1;35r[m[1;1H[L[1;37r[1;1H[93m251 [m  HiLink javaScriptBoolean[13C Boolean[36;59H[1m[7m1,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m250 [m  HiLink javaScriptFloat[15C Number[36;59H[1m[7m0,[12C2%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m249 [m  HiLink javaScriptNumber[14C Number[36;58H[1m[7m49,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m248 [m  HiLink javaScriptNull[16C Type[36;59H[1m[7m8,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m247 [m  HiLink javaScriptType[16C Type[36;59H[1m[7m7,[12C1%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m246 [m  HiLink javaScriptOperator[12C Operator[36;59H[1m[7m6,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m245 [m  HiLink javaScriptReserved[12C Keyword[36;59H[1m[7m5,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m244 [m  HiLink javaScriptParensErrC[10C [93mError[m[36;59H[1m[7m4,[12C0%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m243 [m  HiLink javaScriptParensErrB[10C [93mError[m[36;59H[1m[7m3,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m242 [m  HiLink javaScriptParensErrA[10C [93mError[m[36;59H[1m[7m2,[11C89%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m241 [m  HiLink javaScriptParensError[9C [93mError[m[36;59H[1m[7m1,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m240 [m  HiLink javaScriptError[15C [93mError[m[36;59H[1m[7m0,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m239 [m  HiLink javaScriptDeprecated[10C Exception[36;58H[1m[7m39,[12C8%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m238 [m  HiLink javaScriptMessage[13C Keyword[36;59H[1m[7m8,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m237 [m  HiLink javaScriptFunction[12C Function[36;59H[1m[7m7,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m236 [m  HiLink javaScriptStatement[11C Statement[36;59H[1m[7m6,[12C7%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m235 [m  HiLink javaScriptRepeat[14C Repeat[36;59H[1m[7m5,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m234 [m  HiLink javaScriptIdentifier[10C Identifier[36;59H[1m[7m4,[12C6%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m233 [m  HiLink javaScriptBranch[14C Conditional[36;59H[1m[7m3,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m232 [m  HiLink javaScriptConditional[9C Conditional[36;59H[1m[7m2,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m231 [m  HiLink javaScriptPrototype[11C Type[36;59H[1m[7m1,[12C5%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m230 [m  HiLink javaScriptCharacter[11C Character[36;59H[1m[7m0,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m229 [m  HiLink javaScriptGlobal[14C Constant[36;58H[1m[7m29,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m228 [m  HiLink javaScriptRegexpString[8C String[36;59H[1m[7m8,[12C4%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m227 [m  HiLink javaScriptStringD[13C String[36;59H[1m[7m7,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m226 [m  HiLink javaScriptStringS[13C String[36;59H[1m[7m6,[12C3%[1;5H[?12l[?25h[?25l[1;35r[m[1;1H[L[1;37r[1;1H[93m225 [m  HiLink javaScriptDocParam[12C Function[36;59H[1m[7m5,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m224 [m  HiLink javaScriptDocSeeTag[11C Function[36;59H[1m[7m4,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m223 [m  HiLink javaScriptDocTags[13C Special[36;59H[1m[7m3,[12C2%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m222 [m  HiLink javaScriptCvsTag[14C Function[36;59H[1m[7m2,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m221 [m  HiLink javaScriptCommentTodo[9C Todo[36;59H[1m[7m1,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m220 [m  HiLink javaScriptDocComment[10C Comment[36;59H[1m[7m0,[12C1%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m219 [m  HiLink javaScriptLineComment[9C Comment[36;58H[1m[7m19,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m218 [m  HiLink javaScriptComment[13C Comment[36;59H[1m[7m8,[12C0%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m217 [m  HiLink javaScriptParens[14C Operator[36;59H[1m[7m7,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m216 [m  HiLink javaScriptBraces[14C Function[36;59H[1m[7m6,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m215 [m  HiLink javaScriptLogicSymbols[8C Boolean[36;59H[1m[7m5,[11C79%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m214 [m  HiLink javaScriptOpSymbols[12C Operator[36;59H[1m[7m4,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m213 [m  HiLink javaScriptEndColons[12C Exception[36;59H[1m[7m3,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m212 [m[36;59H[1m[7m2,0-[10C8%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m211 [m  [93mendif[m[36;59H[1m[7m1,1-[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m210 [m    [93mcommand[m [93m-[m[38;5;81mnargs[m[93m=+[m HiLink [93mhi[m [93mdef link[m [38;5;224m<args>[m[36;59H[1m[7m0,[12C7%[1;5H[?12l[?25h[?25l[1;35r[m[1;1H[L[1;37r[1;1H[93m209 [m  [93melse[m[36;58H[1m[7m09,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m208 [m    [93mcommand[m [93m-[m[38;5;81mnargs[m[93m=+[m HiLink [93mhi[m [93mlink[m [38;5;224m<args>[m[36;59H[1m[7m8,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m207 [m    [93mlet[m [1m[96mdid_javascript_syn_inits[m [93m=[m [95m1[m[36;59H[1m[7m7,[12C6%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m206 [m  [93mif[m [93mversion[m [93m<[m [95m508[m[36;59H[1m[7m6,[1;5H[?12l[?25h[?25l[1;35r[m[1;1H[L[1;37r[1;1H[93m205 if[m [93mversion[m [93m>=[m [95m508[m [93m||[m ![1m[96mexists[m[38;5;224m([m[95m"did_javascript_syn_inits"[m[38;5;224m)[m[36;59H[1m[7m5,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m204 [m[96m" For version 5.8 and later: only when an item doesn't have highlighti[m[36;59H[1m[7m4,[12C5%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m203 [m[96m" For version 5.7 and earlier: only when not done already[m[36;59H[1m[7m3,[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m202 [m[96m" Define the default highlighting.[m[36;59H[1m[7m2,[1;5H[?12l[?25h[?25l[1;35r[m[1;1H[L[1;37r[1;1H[93m201 [m[36;59H[1m[7m1,0-[10C4%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m200 [m[96m" }}}[m[36;59H[1m[7m0,1-[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m199 [m[36;57H[1m[7m199,0-[10C3%[1;5H[?12l[?25h[?25l[m[37;64Hgk[1;5H[37;64H  [1;5H[1;35r[1;1H[L[1;37r[1;1H[93m198 au[m [38;5;121mFileType[m javascript [93mcall[m JavaScriptFold[38;5;224m()[m[36;59H[1m[7m8,1-[1;5H[?12l[?25h[?25l[m[37;64Hgj[1;5H[37;64H  [2;5H[36;59H[1m[7m9,0-[2;5H[?12l[?25h[?25l[m[37;64Hgj[2;5H[37;64H  [3;5H[36;57H[1m[7m200,1-[3;5H[?12l[?25h[?25l[m[37;64Hgj[3;5H[37;64H  [4;5H[36;59H[1m[7m1,0-[4;5H[?12l[?25h[?25l[m[37;64Hgj[4;5H[37;64H  [5;5H[36;59H[1m[7m2,1-[5;5H[?12l[?25h[?25l[m[37;64Hgj[5;5H[37;64H  [6;5H[36;59H[1m[7m3,[6;5H[?12l[?25h[?25l[m[37;64Hgj[6;5H[37;64H  [7;5H[36;59H[1m[7m4,[7;5H[?12l[?25h[?25l[m[37;64Hgj[7;5H[37;64H  [8;5H[36;59H[1m[7m5,[8;5H[?12l[?25h[?25l[m[37;64Hgj[8;5H[37;64H  [9;5H[36;59H[1m[7m6,[9;5H[?12l[?25h[?25l[m[37;64Hgj[9;5H[37;64H  [10;5H[36;59H[1m[7m7,[10;5H[?12l[?25h[?25l[m[37;64Hgj[10;5H[37;64H  [11;5H[36;59H[1m[7m8,[11;5H[?12l[?25h[?25l[m[37;64Hgj[11;5H[37;64H  [12;5H[36;59H[1m[7m9,[12;5H[?12l[?25h[?25l[m[37;64Hgj[12;5H[37;64H  [13;5H[36;58H[1m[7m10,[13;5H[?12l[?25h[?25l[m[37;64Hgj[13;5H[37;64H  [14;5H[36;59H[1m[7m1,[14;5H[?12l[?25h[?25l[m[37;64Hgj[14;5H[37;64H  [15;5H[36;59H[1m[7m2,0-[15;5H[?12l[?25h[?25l[m[37;64Hgj[15;5H[37;64H  [16;5H[36;59H[1m[7m3,1-[16;5H[?12l[?25h[?25l[m[37;64Hgj[16;5H[37;64H  [17;5H[36;59H[1m[7m4,[17;5H[?12l[?25h[?25l[m[37;64Hgj[17;5H[37;64H  [18;5H[36;59H[1m[7m5,[18;5H[?12l[?25h[?25l[m[37;64Hgj[18;5H[37;64H  [19;5H[36;59H[1m[7m6,[19;5H[?12l[?25h[?25l[m[37;64Hgj[19;5H[37;64H  [20;5H[36;59H[1m[7m7,[20;5H[?12l[?25h[?25l[m[37;64Hgj[20;5H[37;64H  [21;5H[36;59H[1m[7m8,[21;5H[?12l[?25h[?25l[m[37;64H:[21;5H[37;64H[K[37;1H:[?12l[?25hq[?25l[?12l[?25h[?25l[?1002l[37;1H[K[37;1H[?1l>[?12l[?25h[?1049l]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ exit
+exit
+Script done, file is type
+]0;adam@Leviathan: ~/.vim/syntaxadam@Leviathan:~/.vim/syntax$ exit
+exit
+
+Script done on Tue 17 Apr 2012 11:12:36 AM PDT

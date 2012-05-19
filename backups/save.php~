@@ -1,0 +1,37 @@
+<?php
+$database = "orders";
+$host     = "localhost";
+$user     = "webmaster";
+$password = "adam";
+$table    = "orders";
+
+mysql_connect($host, $user, $password);
+mysql_select_db($database) or die( "Unable to select database" );
+
+$rawdata    = $_POST;
+$query      = "SHOW COLUMNS FROM $table";
+
+$result = mysql_query($query);
+
+$fields     = array();
+
+while ( $row = mysql_fetch_assoc($result) ) {
+  $fieldname = $row['Field'];
+  array_push($fields, $fieldname);
+}
+
+$id     = $rawdata['id'];
+$value  = $rawdata['value'];
+$column = $rawdata['column'];
+
+$fieldname = $fields[$column];
+
+$value = utf8_decode($value);
+
+$query = "UPDATE $table SET $fieldname = '$value' WHERE orderNumber = '$id'";
+$result = mysql_query($query);
+
+if (!$result) { echo "Update failed"; }
+else          { echo "$value"; }
+
+mysql_close();

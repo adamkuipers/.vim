@@ -1,0 +1,11 @@
+Printstagram.Views.ReviewAdd = Backbone.View.extend({
+
+  el: "#review",
+
+  initialize: function() {
+    $(this.el).append(JST['review_app/templates/review_add']
+    ({selects: this.options.selects, count: this.options.count}));
+    $('#add').css("height",Math.ceil(this.options.count /16)*52.25);
+  }
+
+});

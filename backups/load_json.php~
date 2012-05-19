@@ -1,0 +1,13 @@
+<?php
+
+$call = array();
+$call['database'] = "orders";
+$call['host']     = "localhost";
+$call['user']     = "webmaster";
+$call['password'] = "adam";
+$call['table']    = "orders";
+
+$DB = new DB($call);
+
+$DB -> Query("SELECT * FROM $table");
+echo json_encode($DB->Get());

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+  <!--[if lt ie 9]> 
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></Script> 
+  <![endif]-->
+  <title> Printstagram - Error </title>
+  <link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="css/error.css" />
+  <!--<link rel="stylesheet" type="text/css" media="all" href="css/products.css" />-->
+  <link rel="shortcut icon" href="http://socialprintstudio.com/images/SP_icon.gif" />
+</head>
+
+<body>
+  <div id="header">
+    <a href="http://printstagr.am"><img id="logo" src="img/printstagram_new.png"/></a>
+    <div id="about">
+      <h1 id="tagline">Oh no, it looks like we blew it.</h1>
+      <h2 id="info">I mean, all right, no excuses. But, you know, life throws curve balls and we just have to deal. Yes, it seems like there is an error but if you'd like you may continue on what you were doing. If you'd like to email us about it, you can do so at <a href="mailto:hello@socialprintstudio.com">hello@socialprintstudio.com</a>.<br>
+
+        <br />
+      </h2>
+      <a class='button-grey' type="button"  id="productsbtn" href="http://prinstagr.am">Go Back</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+#navigation {
+  font-family: "FuturaSTDBold";
+  margin: 20px 0 20px 20px;
+  width: 209px;
+  float: left;
+
+  #home {
+    cursor: pointer;
+    font-family: "FuturaLTRegular";
+    font-weight: bold;
+    background: rgb(247, 92, 93);
+    color: white;
+    width: 150px;
+    padding: 20px 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    @include border-radius(9px);
+  }
+
+  #user-info {
+    padding: 15px 0;
+    font-size: 0.7em;
+    letter-spacing: 1px;
+    color: rgb(102, 102, 102);
+    text-transform: lowercase;
+
+    h3 {
+      float: left;
+      line-height: 1.6em;
+      #username {
+        color: #888;
+        font-family: "FuturaLTRegular";
+        font-size: 14pt;
+      }
+    }
+
+    #logout {
+      cursor: pointer;
+      background: rgb(207, 207, 207);
+      font-size: 0.85em;
+      padding: 2px 14px;
+      color: white;
+      margin-left: 20px;
+      line-height: 1.6em;
+      @include border-radius(9px);
+      float: left;
+    }
+
+
+  }
+
+  #my-photos {
+    cursor: pointer;
+    @include border-radius(9px);
+    font-size: 0.9em;
+    background: #54CDE9;
+    color: white;
+    width: 162px;
+    padding: 20px 9px;
+    margin: 14px 0;
+    margin-top: 22px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  #friends-text {
+    cursor: pointer;
+  }
+
+  #my-friends {
+    cursor: pointer;
+    @include border-radius(9px);
+    font-size: 0.9em;
+    background: #9D9D9D;
+    color: white;
+    letter-spacing: 2px;
+    width: 180px;
+    padding: 20px 0 3px 0;
+    margin: 14px 0;
+    text-transform: uppercase;
+    text-align: center;
+
+    .friends {
+      font-size: 0.8em;
+      font-family: "FuturaLTRegular";
+      text-transform: none;
+      text-align: left;
+      background: white;
+      border-left: 1px solid #bbb;
+      border-right: 1px solid #ccc;
+      color: #bbb;
+      margin: 14px 0;
+      padding: 0px 12px;
+
+      li {
+        padding: 5px 0;
+
+        .count {
+          float: right;
+        }
+      }
+    }
+  }
+
+  #my-likes {
+    cursor: pointer;
+    @include border-radius(9px);
+    font-size: 0.9em;
+    background: rgb(157, 157, 157);
+    color: white;
+    letter-spacing: 2px;
+    width: 150px;
+    padding: 20px 15px;
+    margin: 14px 0;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  #cart {
+    cursor: pointer;
+    @include border-radius(9px);
+    font-size: 0.9em;
+    background: rgb(157, 157, 157);
+    color: white;
+    letter-spacing: 2px;
+    width: 150px;
+    padding: 20px 15px;
+    margin: 14px 0;
+    text-transform: uppercase;
+    text-align: center;
+    .count {
+      @include box-shadow (inset 1px 2px 1px 1px #666);
+      background: #828282;
+      @include border-radius (21px);
+      border: 10px;
+      border-bottom: 1px solid rgb(214, 214, 214);
+      padding: 3px 9px;
+      margin-left: 5px;
+      overflow: hidden;
+    }
+  }
+
+  .following {
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+}

@@ -1,0 +1,81 @@
+<?php
+echo '
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Order Processing</title>
+
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.bootstrappopover.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="js/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="js/bootstrapx-clickover.js"></script>
+    <script type="text/javascript" src="js/jquery.jeditable.mini.js"></script>
+    <script type="text/javascript" src="js/order.js"></script>
+
+
+  </head>
+  <body>
+    <table class="table table-striped table-bordered" id="orders">
+';
+$database = "orders";
+$host = "localhost";
+$user = "webmaster";
+$password = "adam";
+$table = "orders";
+
+mysql_connect($host, $user, $password);
+mysql_select_db($database) or die( "Unable to select database" );
+echo '
+      <thead>
+        <tr>
+';
+$query = "SHOW COLUMNS FROM $table";
+$result = mysql_query($query);
+
+while ( $row = mysql_fetch_assoc($result) ) {
+  $fieldname = $row['Field'];
+  echo "<th>$fieldname</th>";
+}
+
+echo "<th>Remove Order</th>";
+
+echo '
+        </tr>
+      </thead>
+      <tbody>
+';
+
+$query = "SELECT * FROM $table";
+$result = mysql_query($query);
+
+while ( $row = mysql_fetch_assoc($result) ) {
+  $id = $row['orderNumber'];
+  echo "<tr id='$id'>";
+  foreach ( $row as $key => $value ) {
+    if ( $key === 'orderNumber' ) {
+      echo "<td><button class='btn btn-info details' href='#'>#$value <i class='icon-info-sign icon-white'></i></button></td>";
+      
+    } else {
+      echo "<td class='edit'>$value</td>";
+    }
+  }
+  echo "<td><button class='btn btn-danger delete' href='#' name='delete'><i class='icon-trash icon-white'></i> Delete</button></td>";
+  echo "</tr>";
+}
+
+echo '
+      </tbody>
+    </table>
+  </body>
+</html>
+';

@@ -1,0 +1,8 @@
+<VirtualHost *>
+ServerName localhost
+DocumentRoot /var/www/
+</VirtualHost>
+<VirtualHost *>
+ServerName localhost
+DocumentRoot /home/adam/public_html
+</VirtualHost>

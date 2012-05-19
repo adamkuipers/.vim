@@ -1,0 +1,8 @@
+<a href = "http://printstagr.am">
+  <div class="button buttonText pink">Printstagram</div>
+</a>
+<a href = "http://printstagr.am">
+  <div id="grayArrowLeft" class="buttonText">
+    <span style="line-height:54px; margin-left:1.5em">Keep Shopping</span>
+  </div>
+</a>

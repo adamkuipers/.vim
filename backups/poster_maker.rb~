@@ -1,0 +1,58 @@
+require 'RMagick'
+include Magick
+require 'open-uri'
+
+class PosterMaker
+
+  def self.makePoster(order_id,product_name,urls) 
+    case product_name
+    when "poster20x30white"
+      return poster(order_id, 2.0/3.0, '#FFFFFF',urls)
+    when "poster20x30black"
+      return poster(order_id, 2.0/3.0, '#000000',urls)
+    when "poster20x40white"
+      return poster(order_id, 1.0/2.0, '#FFFFFF',urls)
+    when "poster20x40black"
+      return poster(order_id, 1.0/2.0, '#000000',urls)
+    else
+      puts "I can't print #{product_name}"
+      return false 
+    end
+  end
+
+  def self.poster(order_id,ratio,background,urls)
+    
+    system "mkdir poster_images"
+    filename = "poster_images/#{order_id}.jpg"
+
+    marginsBetween = 20
+    outsideBorder = 100
+
+    #Don't change anything below this!
+    outsideBorder = ((marginsBetween/2)-outsideBorder).abs
+
+    images = ImageList.new()
+    urls.each do |url|
+      images << Image.read(url)[0]
+    end
+    
+
+    columns = Math.sqrt(ratio*urls.length).to_i
+    rows = (Float(columns)/ratio).to_i
+
+    puts "Putting " + urls.length.to_s + " photos into a " + columns.to_s + "x" + rows.to_s + " grid"
+    
+    collage = images.montage {
+      self.geometry = '+' + (marginsBetween/2).to_s + '+' + (marginsBetween/2).to_s
+      self.tile = columns.to_s + 'x' + rows.to_s
+      self.background_color = background
+    }
+
+    collage.resample(150,150)
+    poster = collage.flatten_images
+    poster.border!(outsideBorder, outsideBorder, background)
+    poster.write(filename)
+    return filename
+  end
+
+end

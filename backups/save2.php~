@@ -1,0 +1,58 @@
+<?php
+
+// This script gets data via POST from books_edit_js.php
+
+// The POST request supplies the following data:
+//
+// row_id   => corresponds to the id in the database table 
+// value    => the actual (changed) content to be written 
+// column   => which column number(!) 
+
+$database="orders";
+$host="localhost";
+$user="webmaster";
+$password="adam";
+$table="orders";
+
+mysql_connect($host,$user,$password);
+mysql_select_db($database) or die( "Unable to select database");
+
+$rawdata    = $_POST;
+
+// as only the column number is provided
+// map the column number to the column name 
+$query      = "show columns from $table";
+$result=mysql_query($query);
+
+// grab the field names and pack them into an array
+$fields     = array();
+while ( $row = mysql_fetch_assoc($result) )
+{
+            $feldname = $row['Field'];
+            array_push($fields, $feldname);
+}
+
+// Grab the data from the $_POST request
+$id             = $rawdata['row_id'];
+$value          = $rawdata['value'];
+$column         = $rawdata['column'];
+
+$column += 1;
+// Get the column name by index number
+$fieldname      = $fields[$column];
+
+// The database was created in ISO-8859-x
+// so better convert the UTF-8 input from the browser 
+$value = utf8_decode($value);
+
+$query  = "update $table set $fieldname = '$value' where orderNumber = '$id'";
+$result = mysql_query($query);
+
+// Provide feedback to the entry field 
+if (!$result) { echo "Update failed"; }
+else          { echo "UPD: $value"; }
+
+// Close the connection 
+mysql_close();
+
+?>

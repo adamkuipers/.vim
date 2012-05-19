@@ -1,0 +1,9 @@
+<a href = "http://printstagr.am/">
+  <div class="button buttonText pink">Printstagram</div>
+</a>
+
+<a href ='http://order.printstagr.am/testnew/#<%=shortName%>'>
+  <div id="grayArrowLeft" class="buttonText">
+    <span style="line-height:54px; margin-left:1.5em">Edit Selection</span>
+  </div>
+</a>

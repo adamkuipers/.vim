@@ -1,0 +1,21 @@
+[user]
+	name = Adam Kuipers
+	email = adam.kuipers@gmail.com
+[github]
+	user = adamkuipers
+	token = f963fcaff228eee64421c3139cbf2759
+
+[alias]
+  ch = checkout
+  co = commit
+  st = status
+  glog = log --date=\"short\" --decorate=full --format=\"%C(yellow)%h%d%Creset [%cN] C(white)%ad%Creset %s\" --graph
+
+[diff]
+  color = auto
+
+[pager]
+  color = true
+
+[status]
+  color = auto

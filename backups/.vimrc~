@@ -22,6 +22,8 @@ set cf
 " Mouse
 set mouse=a
 
+
+
 " Tabs
 set expandtab
 set shiftwidth=2
@@ -100,15 +102,15 @@ endif
 " Display
 "===============================================================================
 
+let g:solarized_termcolors=256
 " Set Color Scheme
-colorscheme tir_black
 
 
 " 256 colors
 set t_Co=256
 
 " Syntax highlighting
-syntax on 
+syntax enable 
 
 " Set font according to system
 if MySys() == "mac"
@@ -170,6 +172,10 @@ au Filetype java hi link javaParen Comment
 imap <buffer> <C-X><C-U> <C-X><C-U><C-P>
 imap <buffer> <C-S-Space> <C-X><C-U><C-P>
 
+"==========================================================================
+" PROCESSING
+"==========================================================================
+
 "===============================================================================
 " C/C++/Java
 "===============================================================================
@@ -180,7 +186,7 @@ au BufRead,BufNewFile *.{c,h,cpp,hppjava} set shiftwidth=4
 au BufRead,BufNewFile *.{c,h,cpp,hpp,java} set tabstop=4
 
 " 80 column line
-set cc=80
+"set cc=80
 
 " ==========================================================================="
 " RUBY"
@@ -285,6 +291,7 @@ set directory=~/.vim/tmp
 
 " Pathogen
 call pathogen#infect()
+call pathogen#helptags()
 "Sets how many lines of history VIM has to remember
 set history=256
 " Set auto read when a file is changed from the outside
@@ -307,6 +314,11 @@ function! DAR()
     endw
 endfu
 
+"=========================================================================
+" HTML
+"=========================================================================
+let g:closetag_html_style=1
+au Filetype html,xml,xsl source ~/.vim/scripts/closetag.vim
 "=========================================================================
 " Word Processor
 "=========================================================================

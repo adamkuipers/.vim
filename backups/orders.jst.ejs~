@@ -1,0 +1,82 @@
+<div id="gray-grid">
+
+  <div id="cart-col1">
+    <h3 id="item-count"></h3>
+  </div>
+
+  <div id="cart-col2">
+    
+  </div>
+
+  <div id="cart-col3">
+  <h3>Subtotal: <div id ="cost"></div></h3>
+    <div id="greenArrow" class="buttonText pay" 
+         destination='https://payment.socialprintstudio.com/?cartid=<%=cartid%>&hash=<%=thehash%>'>
+      <span style="line-height:54px; margin-left:-1.5em">Checkout</span>
+    </div>
+  </div>
+
+</div><!-- #gray-grid -->
+
+<div class="marginTop"></div>
+<%
+  numbers = new Hashtable();        
+  orders.each(function(order) {
+    if (numbers.containsKey(order.get('name'))){
+      currentNum = numbers.get(order.get('name'));
+      numbers.put(order.get('name'),currentNum+1);
+    }else{
+      numbers.put(order.get('name'),1);
+    }     
+%>
+<div class = "order"
+     id = "order-<%=order.get('id')%>"
+     price = "<%=order.get('price')%>">
+
+  <div class="cart-photo">
+    <img src="<%=order.get('image_url')%>" />
+  </div>
+
+  <div class="cart-info">
+    <div class="cart-product">
+        <h3 class = "product-name"><%=order.get('name')%> 
+            <%= numbers.get(order.get('name')) == 1 ? null : numbers.get(order.get('name')) %>
+        </h3><br /><br />
+        <a class="cart-edit blue" 
+           href = "/printstagram/modify_order?order_id=<%=order.get('id')%>">
+          edit this item
+        </a>
+        <a class="cart-edit pink delete" 
+           id = "delete-<%= order.get('id')%>">
+        delete
+        </a>
+    </div>
+
+    
+    <div class = "quantity-price">
+      <div class="cart-quantity mediumGrayText">
+      Quantity:
+      </div>
+
+      <div class="cart-quantity-selector lightGray">
+        <div class="arrow-div">
+          <div class="arrow-up add" id="add-<%=order.get('id')%>"></div>
+          <div class="arrow-down subtract" id="subtract-<%=order.get('id')%>"></div>
+        </div>
+        <div class="arrow-text" id="quantity-<%=order.get('id')%>">
+          <%=order.get('quantity')%></div>
+      </div>
+
+      <div class="cart-price">
+        <h3>
+          $<%=parseFloat(order.get('price'))%>
+        </h3>
+      </div>
+    </div>
+
+  </div><!-- .cart-info -->
+
+<hr />
+
+</div><!-- #order -->
+<% }); %>

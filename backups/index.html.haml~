@@ -1,9 +1,25 @@
-:javascript
-  $( function() {
-    Printstagram.init();
-  });
-
-#app-container
-  #navigation
-  #header
-  #main
+%html
+  %body
+    %div.connie#app-container
+      %div{:id => "cart-navigation"}
+        %a{:href => "http://printstagr.am/"}
+          %div{:class => "button buttonText pink"} Prinstagram
+        %a{:href => "/prinstagram"}
+          %div{:id => "grayArrowLeft", :class => "buttonText"}
+            %span{:style => "line-height: 54px; margin-left: 1.5em;"} Keep Shopping
+      %div{:id => "cart-header"}
+        %div{:id => "textDiv", :class => "mediumGrayText"}
+          %h1 Checkout
+          %h2 It's time to hand over the cash!
+      %div{:id => "orders"}
+        %div{:id => "gray-grid"}
+          %div{:id => "cart-col2"} Pay with PayPal!
+          %div{:id => "cart-col3"}
+            = payment_service_for @id, PAYPAL_ACCOUNT, :amount => @amount, :currency => 'USD', :service => 'paypal'  do |form|
+              - form.item_name "Testing"
+              - form.add_field('no_shipping', 0)
+              - form.add_field('custom', @id)
+              - form.notify_url url_for(:only_path => false, :action => 'notify')
+              - form.return_url url_for(:only_path => false, :action => 'success')
+              - form.cancel_return_url 'http://socialprintstudio.com/'
+              = image_submit_tag("http://embers-of-arts-music.webs.com/Paypal_button.jpg", :width => "270px")

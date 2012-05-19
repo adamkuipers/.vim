@@ -1,0 +1,43 @@
+import processing.net.*;
+
+PImage currentImage;
+PImage nextImage;
+
+int frames;
+int imagesDisplayed = 0;
+final int FRAMERATE = 60;
+final float TRANSITION_DURATION = 1.0;
+final float IMAGE_DURATION = 0.1;
+final int HORIZONTAL_PIXELS = 1920;
+final int VERTICAL_PIXELS = 1080;
+final String IMAGE_URL_LINK = "http://toadmurphy.com/nbcu/random_image.php";
+String prevImageUrl;
+
+String nextImageUrl(){
+ return loadStrings(IMAGE_URL_LINK)[0]; 
+}
+
+void setup(){
+  frameRate(FRAMERATE);
+  size(HORIZONTAL_PIXELS,VERTICAL_PIXELS);
+  currentImage =loadImage(nextImageUrl());
+  prevImageUrl = nextImageUrl();
+  nextImage = loadImage(prevImageUrl);
+}
+
+void draw(){
+    frames = frameCount % (int)((IMAGE_DURATION + TRANSITION_DURATION ) * FRAMERATE);
+    if ( frames <= TRANSITION_DURATION * FRAMERATE ){
+      pushMatrix();
+      translate(frames * HORIZONTAL_PIXELS / FRAMERATE,0);
+      image(currentImage,0,0;
+      image(nextImage,-HORIZONTAL_PIXELS,0);
+      popMatrix();
+    }else if ( frames == TRANSITION_DURATION * FRAMERATE + 1){
+      translate(0,0);
+      currentImage = loadImage(prevImageUrl);
+      prevImageUrl = nextImageUrl();
+      println(prevImageUrl);
+      nextImage = loadImage(prevImageUrl);
+    }
+}

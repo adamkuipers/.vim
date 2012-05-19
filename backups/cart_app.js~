@@ -1,0 +1,150 @@
+Printstagram.Views.CartApp = Backbone.View.extend({
+
+  el: "#orders",
+
+  events: {
+    'mousedown .add':       'incrementQuantity',
+    'mousedown .subtract':  'decrementQuantity',
+    'click .delete':        'deleteOrder',
+    'click .pay':           'submitOrder'
+  },
+
+  initialize: function() {
+    self = this;
+
+    this.orders = this.options.orders;
+    this.cartid = this.options.cartid;
+    this.hash = this.hash;
+    this.render();
+    this.setPrice();    
+  },
+
+  render: function() {
+
+    
+
+    $(this.el).html(JST['cart_app/templates/orders'](
+      { 
+        orders: this.orders,
+        cartid: this.cartid,
+        hash: this.hash}));
+
+    this.updateDetails()
+  },
+
+  updateDetails: function(){
+    product_counts = new Hashtable();
+    totalCount = 0;
+    this.orders.each(function(order){
+      if (product_counts.containsKey(order.get('name'))){
+        currentCount = product_counts.get(order.get('name'));
+      }else{
+        currentCount = 0;
+      }
+      currentCount += parseInt(order.get('quantity'));
+      totalCount += parseInt(order.get('quantity'));
+      product_counts.put(order.get('name'),currentCount);
+    });
+
+    result = "";
+    $.each(product_counts.entries(),function(index,product){
+      if (product[0][product[0].length-1] == 's'){
+        product[0] = product[0].substring(0,product[0].length-1)
+      }
+
+      result+=product[1]+" "+product[0];
+
+      if (product[1] > 1){
+        result += 's, ';
+      }else{
+        result += ', ';
+      }
+    });
+    if ( totalCount > 0){
+      $('#item-count').html(totalCount + " items:");
+      $('#cart-col2').html(result.substring(0,result.length-2));
+    }else{
+      $('#cart-col2').html('There\'s nothing here. <a href = "printstagr.am/testnew/">'+
+                            'Go make an order.</a>');
+      $('#item-count').empty();
+      $('#cart-col3').slideUp()
+    }
+
+  },
+
+  submitOrder: function(e){
+    quantities = new Hashtable();
+    $('.order').each(function(){
+      id = $(this).attr('id').split('-')[1];
+      quantity = parseInt($('#quantity-'+id)[0].innerHTML);
+      quantities.put(parseInt(id),quantity);
+    });
+
+    $.post('/api/orders/set_quantities',{data: quantities.entries()},
+      function(){
+        window.location = $(e.currentTarget).attr('destination');
+      });
+  },
+
+  setPrice: function(){
+    this.price = 0;
+    $('.order').each(function(){
+      quantity = parseFloat($('#quantity-' + $(this).attr('id').split('-')[1])[0].innerHTML);
+      self.price += parseFloat($(this).attr('price')) * quantity;
+    });
+    $('#cost').html('$'+this.price);
+  },
+
+  incrementQuantity: function(e){
+    e.preventDefault();
+
+    $quantity = $('#quantity-' + $(e.target).attr('id').split('-')[1]);
+
+    quantity = parseFloat($quantity[0].innerHTML);
+    $quantity.html(quantity+1);
+    orders.get($(e.target).attr('id').split('-')[1]).set({quantity: quantity+1});
+    this.setPrice();
+    this.updateDetails();
+  },
+
+  decrementQuantity: function(e){
+    e.preventDefault();
+
+    $quantity = $('#quantity-' + $(e.target).attr('id').split('-')[1]);
+
+    quantity = parseFloat($quantity[0].innerHTML);
+
+    if (quantity > 1){
+      $quantity.html(quantity-1);
+      orders.get($(e.target).attr('id').split('-')[1]).set({quantity: quantity-1});
+      this.updateDetails();
+      this.setPrice();
+    }
+
+  },
+
+  deleteOrder: function(e){
+    e.preventDefault();
+    apprise('Are you sure you wish to delete this item? If you do, you will ' +
+            'lose all of your photo selections.',{'verify': true,
+                                                  'textYes': 'Delete',
+                                                  'textNo': 'Cancel'},
+    function(r){
+      if (r){
+        orderID = $(e.target).attr('id').split('-')[1];
+        $('#order-'+orderID).slideUp('slow',function(){
+            $('#order-'+orderID).remove();
+            orders.remove(orders.get(orderID));
+            self.updateDetails();
+            self.setPrice();
+          });
+        $.get("/delete_order?order_id=" + orderID, function(){});
+      }
+    });
+    
+  }
+
+
+
+});
+

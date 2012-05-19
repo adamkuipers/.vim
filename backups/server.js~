@@ -1,0 +1,13 @@
+var sys = require ('sys'),
+    http = require ('http'),
+    url = require ('url'),
+    path = require ('path'),
+    fs = require ('fs');
+
+http.createServer (function (req, res) {
+  var uri = url.parse (req.url).pathname;
+  var filename = path.join (process.cwd(), uri);
+  path.exists(filename, function (exists) {
+    if (!exists) {
+      response.sendHeader(404, {'Content-Type':'text/plain'});
+      response.write ('404 Not Found \n');

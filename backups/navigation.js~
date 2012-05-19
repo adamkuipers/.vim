@@ -1,0 +1,108 @@
+SelectorApp.Views.Navigation = Backbone.View.extend({
+
+  addFollowing: function(id,username){
+
+    if ($('#following-' + id).length < 1){
+      $('#friend-list').children().css('color','#BBB');
+      $('#friend-list').append('<li style="display:none;" class = "following" id = "following-' + id + '" count=1>'+ username + '</li>');
+      $('#following-'+id).slideDown('fast').css('color','#000');
+    }else{
+      count = parseInt($('#following-' + id).attr('count'));
+      $('#following-' + id).attr('count',count+1);
+    }
+
+  },
+
+  setFollowingCount: function(id,count){
+    $('#following-' + id).attr('count',count);
+  },
+
+  decrementFollowing: function(id){
+    count = parseInt($('#following-' + id).attr('count')) - 1;
+
+    if ( count <= 0){
+      $('#following-' + id).slideUp('fast',function(){
+        $('#following-' + id).remove();
+      });
+    }else{
+      $('#following-' + id).attr('count',count);
+    }
+
+  },
+
+  el: "#navigation",
+
+  events: {
+    "click .following"  :         "showThisFollowing",
+    "click #my-friends" :         "showMyFriends", 
+    "click #my-photos"  :         "showMyPhotos",
+    "click #my-likes"   :         "showMyLikes",
+    "click #home"       :         "goHome",
+    "click #logout"     :         "logout",
+    "click #noOrders"   :         "noOrders"
+  },
+
+  initialize: function(){
+    navbar = this;
+    this.media = this.options.media;
+    this.options.vent.bind("addFollowingToSelector", this.addFollowing, this);
+    this.options.vent.bind("decrementFollowingFromSelector", this.decrementFollowing, this);
+    this.options.vent.bind("setFollowingCount", this.setFollowingCount, this);
+    this.render();
+    PhotoLoading.loadSavedSelects(this.options.selects);
+    
+  },
+
+  noOrders: function(e){
+    e.preventDefault();
+    apprise("You don't have any orders in your cart.");
+  },
+
+  render: function(){
+    $(this.el).html(JST['selector_app/templates/navigation']({media: this.media, follows: this.options.follows }));
+    $nav = $(this.el);
+  },
+
+  showThisFollowing: function(e){
+    e.preventDefault();
+    this.options.vent.trigger("showThisFollowing",e);
+    resetColors();
+    $("#my-friends").css('background-color','#54CDE9');
+    $(e.target).css('color','#000')
+  },
+
+  showMyFriends: function(e){
+    e.preventDefault();
+    if ($(e.target).attr('id')=='friends-text' ||
+       $(e.target).attr('id')=='my-friends'){
+      this.options.vent.trigger("showFollowingsNow");
+      resetColors();
+      $("#my-friends").css('background-color','#54CDE9');
+    }
+  },
+
+  showMyPhotos: function(e){
+    e.preventDefault();
+    this.options.vent.trigger("showMyPhotosNow");
+    resetColors();
+    $('#my-photos').css('background-color','#54CDE9');
+  },
+
+  showMyLikes: function(e){
+    e.preventDefault();
+    this.options.vent.trigger("showMyLikesNow");
+    resetColors();
+    $('#my-likes').css('background-color','#54CDE9');
+  },
+
+  goHome: function(e){
+    e.preventDefault();
+    window.location = "http://printstagr.am/testnew/";
+  },
+
+  logout: function(e){
+    e.preventDefault();
+    window.location = "/api/instagram/destroy_session";
+  },
+
+});

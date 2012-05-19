@@ -1,0 +1,32 @@
+# Constaint used to match domains for VHOST routing emulation in the app routes
+class SelectorDomain
+  def self.matches?(request)
+    if Rails.env.development?
+      true
+    else
+      request.domain.present? && request.domain(3) == "order.printstagr.am"
+    end
+  end
+end
+
+# Constaint used to match domains for VHOST routing emulation in the app routes
+class PaymentDomain
+  def self.matches?(request)
+    if Rails.env.development?
+      false
+    else
+      request.domain.present? && request.domain(3) == "payment.socialprintstudio.com"
+    end
+  end
+end
+
+# Constaint used to match domains for VHOST routing emulation in the app routes
+class OrdersDomain
+  def self.matches?(request)
+    if Rails.env.development?
+      false
+    else
+      request.domain.present? && request.domain(3) == "tig.socialprintstudio.com"
+    end
+  end
+end

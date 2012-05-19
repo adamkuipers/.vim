@@ -1,0 +1,25 @@
+<% if (selects.length == 0) { %>
+No photos were selected for this order!
+<% return false; } %>
+
+<div class = "marginTop">
+  <h4 class="yellowText">Caution:</h4>
+  <h5>You have not selected enough photos and these will also be included
+      in your product</h5>
+  <div id = 'add' class="photoDisplay yellowText">
+    <ul>
+    <% var i = 0 while ( i <= count ) { %>
+      <% selects.each(function(select) { i++; %>
+        <% if (i > count ) return; %>
+        <li>
+          <img class="selectable add-pic" 
+               photo-id="<%=select.get('photo_id')%>"
+               id="select-<%=select.id%>"
+               src="<%= select.get('thumbnail') %>">
+          </img>
+        </li>
+      <% }); %>
+    <% } %>
+    </ul>
+  </div><!-- .photoDisplay -->
+</div>

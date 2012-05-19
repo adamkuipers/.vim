@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	
+	<!--[if lt ie 9]> 
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></Script> 
+	<![endif]-->
+<title>Printstagram - We Print Your Instagram Photos</title>
+<meta name="Description" content="We sell high quality prints, posters & photobooks made from your Instagram photos. Printing options include posters, minibooks, Tinybooks, mini prints and little stickers. ">
+
+	<link rel="stylesheet" type="text/css" media="all" href="style1.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
+	<link rel="shortcut icon" href="http://socialprintstudio.com/images/SP_icon.gif" />
+	<script type="text/javascript" src="http://use.typekit.com/miq3cjs.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script type="text/javascript" src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript" src="js/scrollto.js"></script>
+	<script type="text/javascript">
+		var current = 0;
+		$(document).ready(function() {
+			onResize();
+			$(window).resize(function() {
+				onResize();
+			});
+			$('#slidernext').click(function(e) {
+				headerNext();
+				event.preventDefault();
+			});
+			$('#sliderprev').click(function(e) {
+				headerPrev();
+				event.preventDefault();
+			});
+			$('.productsbtn').click(function(e) {
+				$('#gifts').slideUp('slow','easeInOutQuart');
+				$.scrollTo( '#productsanchor', 1000, {easing:'easeInOutQuart'} );
+				event.preventDefault();
+			});
+			$('#giftsbtn').click(function(e) {
+				$.scrollTo( '#giftsanchor', 1000, {easing:'easeInOutQuart',onAfter:function() {
+					$('#gifts').slideDown('slow','easeInOutQuart');
+				}} );
+				event.preventDefault();
+			});
+			$('.tshirtlink').click(function(e) {
+				$.scrollTo( '#tshirtanchor', 1000, {easing:'easeInOutQuart'} );
+				event.preventDefault();
+			});
+
+
+		})
+		function onResize(){
+			$('#headerslider').css("width",$('.headerimg').length*$(document).width());
+			$('.headerimg').css("width",$(document).width());
+			$('#headerslider').animate({left:$(document).width()*-current},0);
+		}
+		function headerNext() {
+			if(current != $('.headerimg').length-1) {
+				current = current+1;
+			} else {
+				current = 0;
+			}
+			$('#headerslider').animate({left:$(document).width()*-current},1000,'easeInOutQuart');
+		}
+		function headerPrev() {
+			if(current != 0) {
+				current = current-1;
+			} else {
+				current = $('.headerimg').length-1;
+			}
+			$('#headerslider').animate({left:$(document).width()*-current},1000,'easeInOutQuart');
+		}
+	</script>
+
+
+<!--google tracking-->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12050254-11']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+<body>
+	<div id="tellYourFriends">
+		<div id="twitterContainer">		
+			
+				<a href="http://twitter.com/share" class="twitter-share-button" data-text="Check out Printstagr.am, individual prints and products made with your @Instagram photos" data-url="http://printstagr.am" data-counturl="http://printstagr.am"  data-related="benjaminlotan:socialps" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			</div>
+			<div id="facebookContainer">
+				<a name="fb_share" type="button_count" share_url="http://printstagr.am" href="http://www.facebook.com/sharer.php">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script></div>
+			<div id="pinterestContainer">
+				<a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fprintstagr.am%2F&media=http%3A%2F%2Fprintstagr.am%2Fimg%2Fbg.jpg&description=High%20quality%20prints%2C%20posters%2C%20photo%20books%20and%20more%20made%20from%20your%20Instagram%20photos." class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+			</div>
+
+		<div id="plus1Container">
+			<g:plusone size="medium" href="http://printstagr.am"></g:plusone>
+		</div>
+	</div> 
+	<div id="header">
+		<div id="headerslider">
+			<div class="headerimg" style="background-image: url('img/bg8.jpg');"></div>
+			<div class="headerimg" style="background-image: url('img/bg9.jpg');"></div>
+			<div class="headerimg" style="background-image: url('img/bg18.jpg');"></div>
+			
+			<div class="headerimg" style="background-image: url('img/bg16.jpg');"></div>
+			<div class="headerimg" style="background-image: url('img/bg15.jpg');"></div>
+		</div>
+		<div id="about">
+			<img id="logo" src="img/printstagram_new.png"/>
+			<h1 id="tagline">We Print Your <br/>Instagram Photos </h1>
+			<h2 id="info"><a href="http://instagr.am">Instagram</a> is the lovable photo-sharing app. We make your photos physical, with wonderful products that match the quality and magic of the app itself. <br>Check out our <a class="productsbtn" href="#products"> products</a> below <big>&darr;</big></h2>
+			<!--<a class="button-grey" id="productsbtn" href="#products">PRODUCTS</a>
+			 <a class="button-grey" id="giftsbtn" href="#gifts">GIFTS</a>-->
+			<div id="slidernav">
+				<a href="#" class="nav-button" id="sliderprev"><<</a>
+				<a href="#" class="nav-button" id="slidernext">>></a>
+			</div> 
+		</div>
+	</div>
+	<a name="gifts" id="giftsanchor"></a>
+	<a name="products" style="position:relative;top:-15px;" id="productsanchor"></a>
+	<div class="bar" id="gifts">
+		All of our products make great gifts!
+	</div>
+	<div class="bar" id="products">
+		<a style="border-bottom:none;" class="productsbtn" href="#products"> <img id="newstuff" src="img/newstuff.png"></a>
+	</div>
+	<div>
+		<div class="wrapper">
+			<div class="row" id="newproducts">
+				<ul class="boxes clearfix">
+					<li style="float:left;">
+						<img class="newproductimg" src="img/memorybox_sm2.jpg"/>
+						<div>
+							<a href=""><h1>Memorybox</h1></a>
+							<p>Preserve all your photo memories. The Memorybox contains Miniprints of all the photos you have ever taken on Instagram.<br><a class="button-blue-sm" href="http://printstagr.am/memorybox">more info</a></p>
+						</div>
+					</li>
+					<li style="float:right;">
+						<img class="newproductimg" src="img/tshirt_sm.jpg"/>
+						<div>
+							<a href=""><h1>T-shirts</h1></a>
+							<p>That's Right! we're using a new process to print your favorite instagram photo on a soft American Apparel T-shirt<br><a class="button-blue-sm tshirtlink" href="#tshirtanchor">more info</a></p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="wrapper">
+			<div class="row products infoleft">
+				<div>
+					<h1>TINYBOOK</h1>
+					<p>The Tinybook needs little introduction... it's the product that brings our customers pure joy and delight time after time!</p>
+					<p class="smallinfo">set of 3 - just $10</p>
+					<a class="button-blue" href="http://printstagr.am/tinybook.php">MORE INFO</a>
+				</div>
+				<img class="productphoto" src="img/tinybook2.jpg">
+			</div>
+		</div>
+		<div class="wrapper">
+			<div class="row products inforight">
+				<div>
+					<h1>MINIPRINTS</h1>
+					<p>Printed on card stock with a matte finish and just the right amount of weight, miniprints offer a simple and classy way to showcase your Instagram photos.</p>
+					<p class="smallinfo">48 prints - only $12</p>
+					<a class="button-blue" href="http://printstagr.am/miniprints.php">MORE INFO</a>
+				</div>
+				<img class="productphoto" src="img/bg.jpg">
+			</div>
+		</div>
+		<div class="wrapper">
+			<div class="row products infoleft">
+				<div>
+					<h1>MINIBOOK</h1>
+					<p>Print 50 photos in a little spiral-bound book with thick glossy pages. Get two in each order. </p>
+					<p class="smallinfo">100 photos total - $12</p>
+					<a class="button-blue" href="http://printstagr.am/minibook.php">MORE INFO</a>
+				</div>
+				<img class="productphoto" src="img/minibook2.jpg">
+			</div>
+		</div>
+		<div class="wrapper">
+			<div class="row products inforight">
+				<div>
+					<h1>Poster</h1>
+					<p>A large, high-quality photo print made with the photos of your choice. Select between 50-400 images and we'll arrange them into a nice clean grid.</p>
+					<p class="smallinfo">20" by 40" in size</p>
+					<a class="button-blue" href="http://printstagr.am/poster.php">MORE INFO</a>
+				</div>
+				<img class="productphoto" src="img/poster.jpg">
+			</div>
+		</div>
+		<div class="wrapper">
+		<a name="tshirt" id="tshirtanchor"></a>
+			<div class="row products infoleft">
+				<div>
+					<h1>Instagram T-shirt</h1>
+					<p>Print any photo on a soft American Apparal cotton T. Images come out great, and won't fade. Keep it real. </p>
+					<p class="smallinfo">Coming Oh-so-soon!</p>
+					<!--<a class="button-blue" href="">MORE INFO</a>-->
+				</div>
+				<img class="productphoto" src="img/tshirt4.jpg">
+			</div>
+		</div>
+
+		<div class="wrapper">
+			<div class="row products inforight">
+				<div>
+					<h1>Instagram Stickers</h1>
+					<p>These cute little sticker books come as a pair with 252 stickers in total. Use them liberally without breaking the bank.</p>
+					<p class="smallinfo">Just $10 - Amazing!</p>
+					<a class="button-blue" href="http://printstagr.am/stickers.php">MORE INFO</a>
+				</div>
+				<img class="productphoto" src="img/stickers.jpg">
+			</div>
+		</div>
+		
+
+
+
+	</div>
+	<div class="darkgrey">
+		<div class="row" id="footer">
+			<ul class="boxes clearfix">
+				<li>
+					<h5>Who We Are</h5>
+					<p>Created by Instagramers, we work out of California or wherever else we find ourselves. <br> This homepage is stage one of a major Printstagram overhaul. We've updated the homepage... with site-wide changes rolling out in the weeks to come!</p>
+				</li>
+				<li>
+					<h5>Connect</h5>
+					<p>Follow <a href="http://instagrid.me/socialps">@socialps</a> on Instagram<br/>
+					   Tweet at us <a href="http://twitter.com/instagrid">@socialps</a> <br/>
+					   Or say <a href="mailto:hello@instagrid.me">hello@socialprintstudio.com</a>
+					   <br><br>+ Use the <a href="http://instagrid.me/tag/printstagram">#printstagram</a> Hashtag  <br/>
+  					</p>
+				</li>
+				<li>
+					<h5>Partner Sites</h5>
+					<p><a href="http://instagrid.me">Instagrid.me</a><br/> Make a clean web gallery for your Instagram photos.</p>
+					<p><a href="http://printstagr.am">Instagrid Network</a><br/> The only Instagram-specific Ad Agency.</p>
+				</li>
+
+				<li>
+					<h5>Credits</h5>
+					<p><img src="img/sps100.png" alt="Social Print Studio"><br/>
+						Built by  <a href="http://socialprintstudio.com">Social Print Studio</a></br>
+						&copy;2012 Toad Murphy Corporation
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+	<script type="text/javascript" src="http://assets.pinterest.com/js/pinit.js"></script>
+</body>
+</html>

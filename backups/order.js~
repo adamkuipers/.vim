@@ -1,0 +1,38 @@
+$(document).ready(function() {
+
+  //make_table();
+  var oTable = $('#orders').dataTable( {
+    "bStateSave" : true 
+  });
+
+  oTable.$('.edit').editable('./save.php', {
+    "callback"   : function ( sValue, y ) {
+      var aPos = oTable.fnGetPosition( this );
+      oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+    },
+    "submitdata" : function () {
+      return {
+        "row_id" : this.parentNode.getAttribute('id'),
+        "column" : oTable.fnGetPosition( this )[2]
+      };
+    },
+    type       : 'textarea',
+    event      : 'dblclick',
+    cancel     : 'Cancel',
+    submit     : 'Save',
+    indicator : '<img src="img/indicator.gif" />',
+    tooltip    : 'Click to edit...'
+  });
+
+  $('.delete').click( function() {
+    alert('You\'re fired!');
+  });
+
+  $('.details').clickover( {
+    input      : 'focus',
+    title      : 'This is the cartID',
+    content    : function() {
+      
+  });
+});
+
